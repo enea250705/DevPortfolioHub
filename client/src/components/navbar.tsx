@@ -11,14 +11,14 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
   const isActive = location === href;
 
   return (
-    <WouterLink href={href}>
-      <span className={cn(
-        "hover:text-foreground transition-colors",
+    <span 
+      onClick={() => window.location.href = href}
+      className={cn(
+        "hover:text-foreground transition-colors cursor-pointer",
         isActive ? "text-foreground font-medium" : "text-muted-foreground"
       )}>
-        {children}
-      </span>
-    </WouterLink>
+      {children}
+    </span>
   );
 };
 
@@ -42,10 +42,12 @@ export function Navbar() {
             <NavLink href="/contact">Contact</NavLink>
           </nav>
           <ThemeToggle />
-          <Button variant="outline" className="hidden md:flex">
-            <WouterLink href="/contact">
-              <span>Let's Talk</span>
-            </WouterLink>
+          <Button 
+            variant="outline" 
+            className="hidden md:flex"
+            onClick={() => window.location.href = "/contact"}
+          >
+            <span>Let's Talk</span>
           </Button>
         </div>
       </div>
