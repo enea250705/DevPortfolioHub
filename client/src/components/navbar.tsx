@@ -11,14 +11,14 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
   const isActive = location === href;
 
   return (
-    <span 
+    <div
       onClick={() => window.location.href = href}
       className={cn(
         "hover:text-foreground transition-colors cursor-pointer",
         isActive ? "text-foreground font-medium" : "text-muted-foreground"
       )}>
       {children}
-    </span>
+    </div>
   );
 };
 
