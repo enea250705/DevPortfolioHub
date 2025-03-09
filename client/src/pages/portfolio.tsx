@@ -3,27 +3,35 @@ import { ProjectCard } from "@/components/project-card";
 const projects = [
   {
     title: "E-commerce Platform",
-    description: "A full-featured e-commerce platform with inventory management.",
-    imageUrl: "https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8",
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    technologies: ["React", "Node.js", "PostgreSQL"]
+    description: "A full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, product management, and secure payments.",
+    imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4",
+    liveUrl: "https://ecommerce-demo.example.com",
+    githubUrl: "https://github.com/codewithenea/ecommerce",
+    technologies: ["React", "Node.js", "PostgreSQL", "Express", "Redux"]
   },
   {
-    title: "Project Management Tool",
-    description: "Collaborative project management application with real-time updates.",
-    imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    technologies: ["Vue.js", "Express", "MongoDB"]
+    title: "Real-time Chat Application",
+    description: "Modern chat platform built with WebSocket technology. Supports real-time messaging, user presence, and message history.",
+    imageUrl: "https://images.unsplash.com/photo-1611746872915-64382b5c76da",
+    liveUrl: "https://chat-app.example.com",
+    githubUrl: "https://github.com/codewithenea/chat-app",
+    technologies: ["WebSocket", "React", "Node.js", "MongoDB", "Socket.io"]
   },
   {
-    title: "Social Media Dashboard",
-    description: "Analytics dashboard for social media management.",
-    imageUrl: "https://images.unsplash.com/photo-1739514984003-330f7c1d2007",
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    technologies: ["React", "D3.js", "Firebase"]
+    title: "Content Management System",
+    description: "Custom CMS built for content creators. Features include markdown support, media management, and SEO optimization.",
+    imageUrl: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8",
+    liveUrl: "https://cms-demo.example.com",
+    githubUrl: "https://github.com/codewithenea/cms",
+    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "GraphQL"]
+  },
+  {
+    title: "Analytics Dashboard",
+    description: "Interactive dashboard for visualizing business metrics. Includes real-time data updates and customizable charts.",
+    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+    liveUrl: "https://analytics-demo.example.com",
+    githubUrl: "https://github.com/codewithenea/analytics",
+    technologies: ["React", "D3.js", "Node.js", "Express", "MongoDB"]
   }
 ];
 
@@ -33,10 +41,10 @@ export default function Portfolio() {
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold">Portfolio</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Explore some of our recent projects and see how we've helped other clients achieve their goals.
+          A showcase of my recent web development projects, demonstrating expertise in modern technologies and best practices.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project) => (
           <ProjectCard key={project.title} {...project} />
         ))}
