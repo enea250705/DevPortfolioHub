@@ -1,5 +1,5 @@
 import { ServiceCard } from "@/components/service-card";
-import { Code, Smartphone, Globe, Laptop, Layout, Database, Layers, Server } from "lucide-react";
+import { Code, Globe, Layout, Database, Layers, Server } from "lucide-react";
 
 const services = [
   {
@@ -25,12 +25,6 @@ const services = [
     description: "Expert in database design, SQL, and various database management systems.",
     icon: <Database className="h-6 w-6" />,
     imageUrl: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d"
-  },
-  {
-    title: "Mobile Development",
-    description: "Creating native and cross-platform mobile applications for iOS and Android platforms.",
-    icon: <Smartphone className="h-6 w-6" />,
-    imageUrl: "https://images.unsplash.com/photo-1649105703438-0992d6844823"
   },
   {
     title: "Web Applications",
