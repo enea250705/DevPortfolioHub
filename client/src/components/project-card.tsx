@@ -6,13 +6,12 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { Github } from "lucide-react";
 
 interface ProjectCardProps {
   title: string;
   description: string;
   imageUrl: string;
-  liveUrl?: string;
   githubUrl?: string;
   technologies: string[];
 }
@@ -21,25 +20,38 @@ export function ProjectCard({
   title,
   description,
   imageUrl,
-  liveUrl,
   githubUrl,
   technologies,
 }: ProjectCardProps) {
   return (
-    <Card className="overflow-hidden">
-      <div className="h-48 relative">
+    <Card className="overflow-hidden group">
+      <div className="relative h-[250px] overflow-hidden">
         <img
           src={imageUrl}
           alt={title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle className="flex items-center justify-between">
+          <span>{title}</span>
+          {githubUrl && (
+            <Button variant="ghost" size="icon" asChild>
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+            </Button>
+          )}
+        </CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2">
           {technologies.map((tech) => (
             <span
               key={tech}
@@ -48,24 +60,6 @@ export function ProjectCard({
               {tech}
             </span>
           ))}
-        </div>
-        <div className="flex gap-2">
-          {liveUrl && (
-            <Button variant="outline" asChild>
-              <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4 mr-2" />
-                Live Demo
-              </a>
-            </Button>
-          )}
-          {githubUrl && (
-            <Button variant="outline" asChild>
-              <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-                <Github className="h-4 w-4 mr-2" />
-                Source Code
-              </a>
-            </Button>
-          )}
         </div>
       </CardContent>
     </Card>
