@@ -14,6 +14,30 @@ const quotes = [
   {
     text: "Clean code always looks like it was written by someone who cares.",
     author: "Robert C. Martin"
+  },
+  {
+    text: "Programming isn't about what you know; it's about what you can figure out.",
+    author: "Chris Pine"
+  },
+  {
+    text: "The most disastrous thing that you can ever learn is your first programming language.",
+    author: "Alan Kay"
+  },
+  {
+    text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+    author: "Martin Fowler"
+  },
+  {
+    text: "Software is like entropy: It is difficult to grasp, weighs nothing, and obeys the Second Law of Thermodynamics; i.e., it always increases.",
+    author: "Norman Augustine"
+  },
+  {
+    text: "The best error message is the one that never shows up.",
+    author: "Thomas Fuchs"
+  },
+  {
+    text: "Experience is the name everyone gives to their mistakes.",
+    author: "Oscar Wilde"
   }
 ];
 
@@ -88,7 +112,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {quotes.map((quote, index) => (
-            <div key={index} className="bg-card p-6 rounded-lg relative">
+            <div key={index} className="bg-card p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 relative">
               <Quote className="h-8 w-8 text-primary/20 absolute -top-4 -left-4" />
               <p className="text-lg mb-4 italic">{quote.text}</p>
               <p className="text-sm text-muted-foreground">- {quote.author}</p>
