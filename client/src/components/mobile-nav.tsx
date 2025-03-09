@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,7 @@ export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   
   // Close the menu when location changes
-  React.useEffect(() => {
+  useEffect(() => {
     setIsOpen(false);
   }, [location]);
 
