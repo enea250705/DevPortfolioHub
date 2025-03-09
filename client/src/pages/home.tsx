@@ -38,6 +38,18 @@ const quotes = [
   {
     text: "Experience is the name everyone gives to their mistakes.",
     author: "Oscar Wilde"
+  },
+  {
+    text: "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code.",
+    author: "Dan Salomon"
+  },
+  {
+    text: "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+    author: "Brian W. Kernighan"
+  },
+  {
+    text: "It's not at all important to get it right the first time. It's vitally important to get it right the last time.",
+    author: "Andrew Hunt and David Thomas"
   }
 ];
 
