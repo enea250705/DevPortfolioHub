@@ -4,52 +4,16 @@ import { ArrowRight, CheckCircle2, Quote } from "lucide-react";
 
 const quotes = [
   {
-    text: "Code is like humor. When you have to explain it, it's bad.",
-    author: "Cory House"
+    text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+    author: "Martin Fowler"
   },
   {
     text: "First, solve the problem. Then, write the code.",
     author: "John Johnson"
   },
   {
-    text: "Clean code always looks like it was written by someone who cares.",
-    author: "Robert C. Martin"
-  },
-  {
-    text: "Programming isn't about what you know; it's about what you can figure out.",
-    author: "Chris Pine"
-  },
-  {
-    text: "The most disastrous thing that you can ever learn is your first programming language.",
-    author: "Alan Kay"
-  },
-  {
-    text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-    author: "Martin Fowler"
-  },
-  {
-    text: "Software is like entropy: It is difficult to grasp, weighs nothing, and obeys the Second Law of Thermodynamics; i.e., it always increases.",
-    author: "Norman Augustine"
-  },
-  {
-    text: "The best error message is the one that never shows up.",
-    author: "Thomas Fuchs"
-  },
-  {
-    text: "Experience is the name everyone gives to their mistakes.",
-    author: "Oscar Wilde"
-  },
-  {
-    text: "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code.",
-    author: "Dan Salomon"
-  },
-  {
     text: "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
     author: "Brian W. Kernighan"
-  },
-  {
-    text: "It's not at all important to get it right the first time. It's vitally important to get it right the last time.",
-    author: "Andrew Hunt and David Thomas"
   }
 ];
 
