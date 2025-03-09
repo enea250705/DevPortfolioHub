@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -30,7 +30,7 @@ export default function Contact() {
     onSuccess: () => {
       toast({
         title: "Message sent!",
-        description: "Thank you for contacting us. We'll get back to you soon.",
+        description: "Thank you for contacting me. I'll get back to you soon.",
       });
       form.reset();
     },
@@ -47,33 +47,69 @@ export default function Contact() {
     mutation.mutate(data);
   };
 
+  const socialLinks = [
+    { icon: <Github className="h-5 w-5" />, label: "GitHub", href: "https://github.com/yourusername" },
+    { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", href: "https://linkedin.com/in/yourusername" },
+  ];
+
   return (
-    <div className="grid md:grid-cols-2 gap-8">
+    <div className="grid lg:grid-cols-2 gap-12">
       <div className="space-y-8">
         <div>
-          <h1 className="text-4xl font-bold mb-4">Get in Touch</h1>
+          <h1 className="text-4xl font-bold mb-4">Let's Connect</h1>
           <p className="text-muted-foreground">
-            Have a project in mind? Let's discuss how we can help bring your ideas to life.
+            Have a project in mind? I'm here to help turn your ideas into reality.
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div className="flex items-center gap-3">
-            <Mail className="h-5 w-5 text-muted-foreground" />
-            <p>contact@example.com</p>
+            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+              <Mail className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p className="font-medium">Email</p>
+              <p className="text-muted-foreground">contact@example.com</p>
+            </div>
           </div>
+
           <div className="flex items-center gap-3">
-            <Phone className="h-5 w-5 text-muted-foreground" />
-            <p>+1 (555) 123-4567</p>
+            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+              <Phone className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p className="font-medium">Phone</p>
+              <p className="text-muted-foreground">+1 (555) 123-4567</p>
+            </div>
           </div>
+
           <div className="flex items-center gap-3">
-            <MapPin className="h-5 w-5 text-muted-foreground" />
-            <p>123 Developer Street, Code City, 12345</p>
+            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+              <MapPin className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p className="font-medium">Location</p>
+              <p className="text-muted-foreground">123 Developer Street, Code City, 12345</p>
+            </div>
           </div>
+        </div>
+
+        <div className="flex gap-4">
+          {socialLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+            >
+              {link.icon}
+            </a>
+          ))}
         </div>
       </div>
 
-      <div className="bg-card rounded-lg p-6">
+      <div className="bg-card rounded-lg p-8">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
@@ -110,8 +146,8 @@ export default function Contact() {
                   <FormLabel>Message</FormLabel>
                   <FormControl>
                     <Textarea 
-                      placeholder="Tell us about your project..."
-                      className="min-h-[120px]"
+                      placeholder="Tell me about your project..."
+                      className="min-h-[150px]"
                       {...field}
                     />
                   </FormControl>
