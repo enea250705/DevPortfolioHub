@@ -1,54 +1,56 @@
-
-import { Link as WouterLink, useLocation } from "wouter";
-import { ThemeToggle } from "./theme-toggle";
+import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
-import Link from "next/link";  // Import NextLink to avoid nesting anchor tags
+import { motion } from "framer-motion";
+import { MobileNav } from "./mobile-nav";
 
-// NavLink component with active state
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
+export default function Navbar() {
   const [location] = useLocation();
-  const isActive = location === href;
 
-  return (
-    <div
-      onClick={() => window.location.href = href}
-      className={cn(
-        "hover:text-foreground transition-colors cursor-pointer",
-        isActive ? "text-foreground font-medium" : "text-muted-foreground"
-      )}>
-      {children}
-    </div>
+  const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+    <Link href={href}>
+      <span
+        className={cn(
+          "relative text-sm font-medium transition-colors hover:text-primary cursor-pointer",
+          location === href
+            ? "text-foreground"
+            : "text-muted-foreground"
+        )}
+      >
+        {children}
+        {location === href && (
+          <motion.div
+            layoutId="underline"
+            className="absolute left-0 top-full h-[2px] w-full bg-primary"
+            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+      </span>
+    </Link>
   );
-};
 
-export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
-        <div className="ml-4 md:ml-8">
-          <WouterLink href="/">
+        <div className="pl-8 md:pl-12">
+          <Link href="/">
             <span className="flex items-center space-x-2 cursor-pointer font-bold text-lg">
               <span className="gradient-text">CodeWithEnea</span>
             </span>
-          </WouterLink>
+          </Link>
         </div>
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
             <NavLink href="/">Home</NavLink>
-            <NavLink href="/about">About</NavLink>
             <NavLink href="/services">Services</NavLink>
             <NavLink href="/portfolio">Portfolio</NavLink>
             <NavLink href="/contact">Contact</NavLink>
           </nav>
-          <ThemeToggle />
-          <Button 
-            variant="outline" 
-            className="hidden md:flex"
-            onClick={() => window.location.href = "/contact"}
-          >
-            <span>Let's Talk</span>
-          </Button>
+          <div className="md:hidden flex items-center">
+            <span className="text-sm text-muted-foreground mr-2 animate-pulse">
+              Menu →
+            </span>
+            <MobileNav />
+          </div>
         </div>
       </div>
     </header>
