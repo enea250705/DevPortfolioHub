@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, X } from "lucide-react";
@@ -10,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export function MobileNav() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  
+
   // Close the menu when location changes
   useEffect(() => {
     setIsOpen(false);
@@ -47,14 +46,11 @@ export function MobileNav() {
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-background/95 backdrop-blur">
-        <motion.nav 
-          className="flex flex-col space-y-6 mt-8"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ 
-            duration: 0.3,
-            staggerChildren: 0.1
-          }}
+        <motion.nav
+          className="flex flex-col mt-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           {[
             { href: "/", label: "Home" },
@@ -64,11 +60,12 @@ export function MobileNav() {
           ].map((item, index) => (
             <motion.div
               key={item.href}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ 
-                delay: index * 0.05,
-                duration: 0.3
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                delay: index * 0.1,
+                duration: 0.4,
+                ease: [0.22, 1, 0.36, 1],
               }}
             >
               <Link href={item.href}>
@@ -86,7 +83,7 @@ export function MobileNav() {
             </motion.div>
           ))}
         </motion.nav>
-        <motion.div 
+        <motion.div
           className="absolute bottom-8 left-8 right-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
