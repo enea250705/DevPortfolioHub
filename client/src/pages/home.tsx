@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, Code2, Users, Quote } from "lucide-react";
+import { ArrowRight, CheckCircle2, Quote } from "lucide-react";
 
 const quotes = [
   {
@@ -18,12 +18,6 @@ const quotes = [
 ];
 
 export default function Home() {
-  const stats = [
-    { label: "Years Experience", value: "5+" },
-    { label: "Projects Completed", value: "50+" },
-    { label: "Satisfied Clients", value: "30+" },
-  ];
-
   const features = [
     "Custom Web Development",
     "Frontend Expertise",
@@ -65,18 +59,6 @@ export default function Home() {
             alt="Professional developer workspace"
             className="rounded-lg shadow-lg object-cover w-full aspect-video"
           />
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-12 bg-accent/10 rounded-lg">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          {stats.map((stat) => (
-            <div key={stat.label} className="space-y-2">
-              <p className="text-4xl font-bold text-primary">{stat.value}</p>
-              <p className="text-muted-foreground">{stat.label}</p>
-            </div>
-          ))}
         </div>
       </section>
 

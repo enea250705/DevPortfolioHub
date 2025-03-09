@@ -10,13 +10,13 @@ export function MobileNav() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" className="md:hidden" size="icon">
+        <Button variant="ghost" size="icon">
           <Menu className="h-6 w-6" />
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-        <nav className="flex flex-col space-y-4 mt-8">
+      <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-background/95 backdrop-blur">
+        <nav className="flex flex-col space-y-6 mt-8">
           {[
             { href: "/", label: "Home" },
             { href: "/services", label: "Services" },
@@ -26,10 +26,10 @@ export function MobileNav() {
             <Link key={item.href} href={item.href}>
               <span
                 className={cn(
-                  "block px-2 py-1 text-lg transition-colors hover:text-primary cursor-pointer",
+                  "block px-4 py-2 text-lg transition-colors hover:text-primary cursor-pointer border-l-2",
                   location === item.href
-                    ? "text-primary font-medium"
-                    : "text-muted-foreground"
+                    ? "text-primary font-medium border-primary"
+                    : "text-muted-foreground border-transparent hover:border-primary/50"
                 )}
               >
                 {item.label}
@@ -37,6 +37,11 @@ export function MobileNav() {
             </Link>
           ))}
         </nav>
+        <div className="absolute bottom-8 left-8 right-8">
+          <p className="text-sm text-muted-foreground text-center">
+            Let's build something amazing together
+          </p>
+        </div>
       </SheetContent>
     </Sheet>
   );
