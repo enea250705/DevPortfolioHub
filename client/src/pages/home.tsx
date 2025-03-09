@@ -1,6 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, Code2, Users } from "lucide-react";
+import { ArrowRight, CheckCircle2, Code2, Users, Quote } from "lucide-react";
+
+const quotes = [
+  {
+    text: "Code is like humor. When you have to explain it, it's bad.",
+    author: "Cory House"
+  },
+  {
+    text: "First, solve the problem. Then, write the code.",
+    author: "John Johnson"
+  },
+  {
+    text: "Clean code always looks like it was written by someone who cares.",
+    author: "Robert C. Martin"
+  }
+];
 
 export default function Home() {
   const stats = [
@@ -78,6 +93,23 @@ export default function Home() {
             <div key={feature} className="flex items-center gap-3 p-4 rounded-lg bg-card">
               <CheckCircle2 className="h-5 w-5 text-primary" />
               <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Quotes Section */}
+      <section className="py-12 bg-accent/5">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Words of Wisdom</h2>
+          <p className="text-muted-foreground">Inspirational quotes that guide my development philosophy</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {quotes.map((quote, index) => (
+            <div key={index} className="bg-card p-6 rounded-lg relative">
+              <Quote className="h-8 w-8 text-primary/20 absolute -top-4 -left-4" />
+              <p className="text-lg mb-4 italic">{quote.text}</p>
+              <p className="text-sm text-muted-foreground">- {quote.author}</p>
             </div>
           ))}
         </div>
