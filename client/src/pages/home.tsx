@@ -135,6 +135,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Quotes Section */}
+      <section className="py-16 bg-gradient-to-r from-primary/5 to-purple-500/5 rounded-lg mx-4 md:mx-0">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto px-4"
+        >
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold">Developer Wisdom</h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {quotes.map((quote, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-card p-6 rounded-lg shadow-sm hover:shadow-md transition-all relative"
+              >
+                <Quote className="h-8 w-8 text-primary/20 absolute top-4 right-4" />
+                <p className="text-sm md:text-base mb-4 italic">{quote.text}</p>
+                <p className="text-sm text-muted-foreground font-medium">— {quote.author}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+      
       {/* CTA Section */}
       <section className="py-12 text-center space-y-6 bg-primary/5 rounded-lg p-8 mx-4 md:mx-0">
         <motion.div
