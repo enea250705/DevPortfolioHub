@@ -3,11 +3,49 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --page-transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   * {
     @apply border-border;
   }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  main {
+    @apply transition-opacity duration-300;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+
+  img {
+    @apply rounded-lg transition-transform duration-300;
+  }
+
+  .page-enter {
+    @apply opacity-0;
+  }
+
+  .page-enter-active {
+    @apply opacity-100;
+  }
+
+  .page-exit {
+    @apply opacity-100;
+  }
+
+  .page-exit-active {
+    @apply opacity-0;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-purple-500 to-blue-600 bg-clip-text text-transparent;
   }
 }
