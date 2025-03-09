@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
-        <div className="pl-8 md:pl-12">
+        <div className="pl-4 md:pl-6">
           <Link href="/">
             <span className="flex items-center space-x-2 cursor-pointer font-bold text-lg">
               <span className="gradient-text">CodeWithEnea</span>
