@@ -31,11 +31,13 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
-        <Link href="/">
-          <span className="flex items-center space-x-2 cursor-pointer font-bold text-lg">
-            <span className="gradient-text">CodeWithEnea</span>
-          </span>
-        </Link>
+        <div className="pl-8 md:pl-12">
+          <Link href="/">
+            <span className="flex items-center space-x-2 cursor-pointer font-bold text-lg">
+              <span className="gradient-text">CodeWithEnea</span>
+            </span>
+          </Link>
+        </div>
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
             <NavLink href="/">Home</NavLink>
