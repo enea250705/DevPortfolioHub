@@ -14,13 +14,8 @@ export async function registerRoutes(app: Express) {
       // Send email notification
       try {
         await sendContactEmail(message);
-        console.log(`Email notification sent successfully for message ID: ${message.id}`);
       } catch (emailError) {
-        console.error("Failed to send email notification:", emailError);
-        // Log detailed error but continue with response
-        if (emailError instanceof Error) {
-          console.error(`Email error details: ${emailError.message}`);
-        }
+        console.error("Failed to send email:", emailError);
         // Continue with the response even if email fails
       }
 
