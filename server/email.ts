@@ -48,10 +48,10 @@ Sent at: ${message.createdAt}
     text: `
 Dear ${message.name},
 
-Thank you for reaching out to Code with Enea. We have received your message and our team will get back to you within 24-48 hours.
+Thank you for reaching out to us. We have received your message and our team will get back to you within 24-48 hours.
 
 Best regards,
-The Code with Enea Team
+Enea.
     `,
   });
 }
