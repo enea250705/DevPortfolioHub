@@ -12,6 +12,8 @@ import { apiRequest } from "@/lib/queryClient";
 import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import * as z from 'zod';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -19,29 +21,39 @@ const fadeInUp = {
   transition: { duration: 0.5 }
 };
 
+const plans = [
+  { value: "Basic", label: "Basic Plan - $499" },
+  { value: "Professional", label: "Professional Plan - $999" },
+  { value: "Enterprise", label: "Enterprise Plan - $1999" }
+];
+
 export default function Contact() {
   const { toast } = useToast();
   const [location] = useLocation();
   const searchParams = new URLSearchParams(location.split('?')[1] || '');
   const selectedPlan = searchParams.get('plan');
 
-  const form = useForm<ContactMessage>({
-    resolver: zodResolver(contactMessageSchema),
+  const form = useForm<ContactMessage & { plan: string }>({
+    resolver: zodResolver(contactMessageSchema.extend({
+      plan: z.string().optional()
+    })),
     defaultValues: {
       name: "",
       email: "",
       message: selectedPlan 
         ? `I'm interested in the ${selectedPlan} package.`
         : "",
+      plan: selectedPlan || ""
     }
   });
 
-  // Update form message when plan changes
+  // Update message when plan changes
+  const watchPlan = form.watch("plan");
   useEffect(() => {
-    if (selectedPlan) {
-      form.setValue('message', `I'm interested in the ${selectedPlan} package.`);
+    if (watchPlan) {
+      form.setValue('message', `I'm interested in the ${watchPlan} package.`);
     }
-  }, [selectedPlan, form]);
+  }, [watchPlan, form]);
 
   const mutation = useMutation({
     mutationFn: async (data: ContactMessage) => {
@@ -64,8 +76,11 @@ export default function Contact() {
     },
   });
 
-  const onSubmit = (data: ContactMessage) => {
-    mutation.mutate(data);
+  const onSubmit = (data: ContactMessage & { plan: string }) => {
+    mutation.mutate({
+      ...data,
+      message: `Plan: ${data.plan}\n\n${data.message}`
+    });
   };
 
   const socialLinks = [
@@ -172,6 +187,34 @@ export default function Contact() {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
+              name="plan"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Choose Your Plan</FormLabel>
+                  <Select
+                    value={field.value}
+                    onValueChange={field.onChange}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a plan" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {plans.map((plan) => (
+                        <SelectItem key={plan.value} value={plan.value}>
+                          {plan.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
@@ -183,6 +226,7 @@ export default function Contact() {
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="email"
@@ -196,6 +240,7 @@ export default function Contact() {
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="message"
@@ -213,6 +258,7 @@ export default function Contact() {
                 </FormItem>
               )}
             />
+
             <Button 
               type="submit" 
               className="w-full relative overflow-hidden"
