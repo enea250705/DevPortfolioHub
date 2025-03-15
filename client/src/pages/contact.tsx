@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -48,8 +48,8 @@ export default function Contact() {
   };
 
   const socialLinks = [
-    { icon: <Github className="h-5 w-5" />, label: "GitHub", href: "https://github.com/yourusername" },
-    { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", href: "https://linkedin.com/in/yourusername" },
+    { icon: <Instagram className="h-5 w-5" />, label: "Instagram", href: "https://www.instagram.com/eneaaa__m" },
+    { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", href: "https://www.linkedin.com/in/enea-muja-16b5b9311" },
   ];
 
   return (
