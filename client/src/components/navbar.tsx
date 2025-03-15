@@ -43,6 +43,7 @@ export default function Navbar() {
             <NavLink href="/">Home</NavLink>
             <NavLink href="/services">Services</NavLink>
             <NavLink href="/portfolio">Portfolio</NavLink>
+            <NavLink href="/pricing">Pricing</NavLink>
             <NavLink href="/contact">Contact</NavLink>
           </nav>
           <div className="md:hidden flex items-center">

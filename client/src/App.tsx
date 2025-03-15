@@ -11,6 +11,7 @@ import Portfolio from "@/pages/portfolio";
 import Contact from "@/pages/contact";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
+import Pricing from "@/pages/pricing";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 
@@ -38,6 +39,7 @@ function Router() {
           <Route path="/contact" component={Contact} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
+          <Route path="/pricing" component={Pricing} />
           <Route component={NotFound} />
         </Switch>
       </motion.div>

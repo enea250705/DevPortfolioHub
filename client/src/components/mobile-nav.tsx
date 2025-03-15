@@ -56,6 +56,7 @@ export function MobileNav() {
             { href: "/", label: "Home" },
             { href: "/services", label: "Services" },
             { href: "/portfolio", label: "Portfolio" },
+            { href: "/pricing", label: "Pricing" },
             { href: "/contact", label: "Contact" },
           ].map((item, index) => (
             <motion.div
