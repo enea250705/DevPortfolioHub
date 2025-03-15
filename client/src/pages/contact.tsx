@@ -11,7 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
-import { useLocation } from "wouter"; // Changed to wouter
+import { useLocation } from "wouter";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -21,12 +21,18 @@ const fadeInUp = {
 
 export default function Contact() {
   const { toast } = useToast();
+  const [location] = useLocation();
+  const searchParams = new URLSearchParams(location.split('?')[1] || '');
+  const selectedPlan = searchParams.get('plan');
+
   const form = useForm<ContactMessage>({
     resolver: zodResolver(contactMessageSchema),
     defaultValues: {
       name: "",
       email: "",
-      message: ""
+      message: selectedPlan 
+        ? `I'm interested in the ${selectedPlan} package.`
+        : "",
     }
   });
 
@@ -59,10 +65,6 @@ export default function Contact() {
     { icon: <Instagram className="h-5 w-5" />, label: "Instagram", href: "https://www.instagram.com/eneaaa__m" },
     { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", href: "https://www.linkedin.com/in/enea-muja-16b5b9311" },
   ];
-
-  const [location] = useLocation(); // Changed to wouter's useLocation
-  const searchParams = new URLSearchParams(location.split('?')[1]);
-  const selectedPlan = searchParams.get('plan');
 
 
   return (
