@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, Quote } from "lucide-react";
+import { BackToTop } from "@/components/back-to-top";
+import { SkillsSection } from "@/components/skills-section";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const quotes = [
   {
@@ -18,6 +22,14 @@ const quotes = [
 ];
 
 export default function Home() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
   const features = [
     "Custom Web Development",
     "Frontend Expertise",
@@ -29,19 +41,37 @@ export default function Home() {
 
   return (
     <div className="space-y-24">
-      {/* Hero Section */}
-      <section className="py-16 flex flex-col md:flex-row items-center gap-8">
+      {/* Hero Section with Parallax */}
+      <motion.section
+        ref={ref}
+        className="py-16 flex flex-col md:flex-row items-center gap-8 overflow-hidden"
+      >
         <div className="flex-1 space-y-4">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+          <motion.h1
+            className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             Transforming Ideas Into
             <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
               {" "}Digital Reality
             </span>
-          </h1>
-          <p className="text-muted-foreground text-lg">
+          </motion.h1>
+          <motion.p
+            className="text-muted-foreground text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             Professional web development services tailored to your needs. Let's build something amazing together.
-          </p>
-          <div className="flex gap-4">
+          </motion.p>
+          <motion.div
+            className="flex gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <Button asChild size="lg">
               <Link href="/contact">
                 Get Started
@@ -51,16 +81,25 @@ export default function Home() {
             <Button variant="outline" size="lg" asChild>
               <Link href="/portfolio">View Portfolio</Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
-        <div className="flex-1">
+        <motion.div
+          className="flex-1"
+          style={{ y }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
           <img
             src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
             alt="Professional developer workspace"
             className="rounded-lg shadow-lg object-cover w-full aspect-video"
           />
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
+
+      {/* Skills Section */}
+      <SkillsSection />
 
       {/* Features Section */}
       <section className="py-12">
@@ -71,11 +110,18 @@ export default function Home() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature) => (
-            <div key={feature} className="flex items-center gap-3 p-4 rounded-lg bg-card">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature}
+              className="flex items-center gap-3 p-4 rounded-lg bg-card hover:bg-accent/5 transition-colors"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
               <CheckCircle2 className="h-5 w-5 text-primary" />
               <span>{feature}</span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -88,11 +134,18 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {quotes.map((quote, index) => (
-            <div key={index} className="bg-card p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 relative">
+            <motion.div
+              key={index}
+              className="bg-card p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 relative"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
               <Quote className="h-8 w-8 text-primary/20 absolute -top-4 -left-4" />
               <p className="text-lg mb-4 italic">{quote.text}</p>
               <p className="text-sm text-muted-foreground">- {quote.author}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -110,6 +163,8 @@ export default function Home() {
           </Link>
         </Button>
       </section>
+
+      <BackToTop />
     </div>
   );
 }
