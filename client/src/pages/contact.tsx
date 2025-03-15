@@ -69,7 +69,7 @@ export default function Contact() {
             </div>
             <div>
               <p className="font-medium">Email</p>
-              <p className="text-muted-foreground">contact@example.com</p>
+              <p className="text-muted-foreground">info@codewithenea.it</p>
             </div>
           </div>
 
@@ -79,7 +79,7 @@ export default function Contact() {
             </div>
             <div>
               <p className="font-medium">Phone</p>
-              <p className="text-muted-foreground">+1 (555) 123-4567</p>
+              <p className="text-muted-foreground">+393761024080</p>
             </div>
           </div>
 
@@ -89,7 +89,7 @@ export default function Contact() {
             </div>
             <div>
               <p className="font-medium">Location</p>
-              <p className="text-muted-foreground">123 Developer Street, Code City, 12345</p>
+              <p className="text-muted-foreground">Milan, IT</p>
             </div>
           </div>
         </div>
