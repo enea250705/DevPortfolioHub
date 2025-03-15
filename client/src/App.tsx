@@ -9,6 +9,8 @@ import Home from "@/pages/home";
 import Services from "@/pages/services";
 import Portfolio from "@/pages/portfolio";
 import Contact from "@/pages/contact";
+import Privacy from "@/pages/privacy";
+import Terms from "@/pages/terms";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -28,6 +30,8 @@ function Router() {
           <Route path="/services" component={Services} />
           <Route path="/portfolio" component={Portfolio} />
           <Route path="/contact" component={Contact} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/terms" component={Terms} />
           <Route component={NotFound} />
         </Switch>
       </motion.div>
