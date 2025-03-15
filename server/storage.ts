@@ -1,33 +1,24 @@
-import { type ContactMessage, type InsertContactMessage } from "@shared/schema";
+import { ContactMessage } from "@shared/schema";
 
+// Interface defining the storage operations
 export interface IStorage {
-  createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
+  createContactMessage(message: ContactMessage): Promise<ContactMessage>;
   getContactMessages(): Promise<ContactMessage[]>;
 }
 
-export class MemStorage implements IStorage {
-  private messages: Map<number, ContactMessage>;
-  private currentId: number;
+// In-memory storage implementation
+class MemStorage implements IStorage {
+  private contactMessages: ContactMessage[] = [];
 
-  constructor() {
-    this.messages = new Map();
-    this.currentId = 1;
-  }
-
-  async createContactMessage(message: InsertContactMessage): Promise<ContactMessage> {
-    const id = this.currentId++;
-    const newMessage: ContactMessage = {
-      id,
-      ...message,
-      createdAt: new Date(),
-    };
-    this.messages.set(id, newMessage);
-    return newMessage;
+  async createContactMessage(message: ContactMessage): Promise<ContactMessage> {
+    this.contactMessages.push(message);
+    return message;
   }
 
   async getContactMessages(): Promise<ContactMessage[]> {
-    return Array.from(this.messages.values());
+    return this.contactMessages;
   }
 }
 
+// Export a single instance to be used throughout the application
 export const storage = new MemStorage();

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Instagram, Linkedin, Mail, MapPin } from "lucide-react";
+import { Instagram, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { scrollToSection } from "@/lib/utils";
 
@@ -13,49 +13,23 @@ export function Footer() {
     { icon: <Mail className="h-5 w-5" />, href: "mailto:info@codewithenea.it", label: "Email" },
   ];
 
-  const footerLinks = [
-    { title: "Quick Links", items: [
-      { label: "Home", href: "/", section: "hero" },
-      { label: "Services", href: "/services", section: "services" },
-      { label: "Portfolio", href: "/portfolio", section: "portfolio" },
-      { label: "Contact", href: "/contact", section: "contact" },
-    ]},
-    { title: "Services", items: [
-      { label: "Web Development", href: "/services", section: "web-development" },
-      { label: "Frontend Development", href: "/services", section: "frontend-development" },
-      { label: "Backend Development", href: "/services", section: "backend-development" },
-      { label: "Database Design", href: "/services", section: "database-design" },
-    ]},
-    { title: "Contact Info", items: [
-      { label: "info@codewithenea.it", href: "mailto:info@codewithenea.it" },
-      { label: "+393761024080", href: "tel:+393761024080" },
-      { label: "Milan, IT", href: "#location" },
-    ]},
+  const contactInfo = [
+    { label: "info@codewithenea.it", href: "mailto:info@codewithenea.it" },
+    { label: "+393761024080", href: "tel:+393761024080" },
+    { label: "Milan, IT", href: "#location" },
   ];
 
-  const handleNavigation = (href: string, section?: string) => {
+  const handleNavigation = (href: string) => {
     if (href.startsWith("mailto:") || href.startsWith("tel:")) {
       window.location.href = href;
       return;
-    }
-
-    if (href === location) {
-      // If we're already on the page, scroll to section
-      if (section) {
-        scrollToSection(section);
-      }
-    } else {
-      // Navigate to new page then scroll
-      if (section) {
-        setTimeout(() => scrollToSection(section), 100);
-      }
     }
   };
 
   return (
     <footer className="bg-card mt-24 border-t">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
             <Link href="/">
@@ -84,24 +58,22 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Links Sections */}
-          {footerLinks.map((section) => (
-            <div key={section.title} className="space-y-4">
-              <h3 className="font-semibold">{section.title}</h3>
-              <ul className="space-y-2">
-                {section.items.map((item) => (
-                  <li key={item.label}>
-                    <span 
-                      onClick={() => handleNavigation(item.href, item.section)}
-                      className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                    >
-                      {item.label}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Contact Info Section */}
+          <div className="space-y-4">
+            <h3 className="font-semibold">Contact Info</h3>
+            <ul className="space-y-2">
+              {contactInfo.map((item) => (
+                <li key={item.label}>
+                  <span 
+                    onClick={() => handleNavigation(item.href)}
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                  >
+                    {item.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Bottom Bar */}
