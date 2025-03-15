@@ -1,4 +1,3 @@
-
 import { CheckCircle2, XCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,7 +5,7 @@ import { Button } from "@/components/ui/button";
 const pricingTiers = [
   {
     name: "Basic",
-    price: 999,
+    price: 499,
     description: "Perfect for small projects",
     features: [
       "Web Development",
@@ -19,7 +18,7 @@ const pricingTiers = [
   },
   {
     name: "Professional",
-    price: 2499,
+    price: 999,
     description: "Ideal for growing businesses",
     features: [
       "Web Development",
@@ -34,7 +33,7 @@ const pricingTiers = [
   },
   {
     name: "Enterprise",
-    price: 4999,
+    price: 1999,
     description: "For large-scale applications",
     features: [
       "Custom Web Development",

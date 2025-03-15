@@ -12,11 +12,11 @@ interface Feature {
 }
 
 const additionalFeatures: Feature[] = [
-  { id: "seo", name: "Search Engine Optimization", price: 499 },
-  { id: "analytics", name: "Advanced Analytics Integration", price: 299 },
-  { id: "cms", name: "Content Management System", price: 799 },
-  { id: "maintenance", name: "Monthly Maintenance", price: 199 },
-  { id: "security", name: "Enhanced Security Features", price: 399 },
+  { id: "seo", name: "Search Engine Optimization", price: 199 },
+  { id: "analytics", name: "Advanced Analytics Integration", price: 149 },
+  { id: "cms", name: "Content Management System", price: 299 },
+  { id: "maintenance", name: "Monthly Maintenance", price: 99 },
+  { id: "security", name: "Enhanced Security Features", price: 199 },
 ];
 
 export function PricingCalculator() {
@@ -25,10 +25,10 @@ export function PricingCalculator() {
 
   const getBasePrice = () => {
     switch (basePackage) {
-      case "basic": return 999;
-      case "professional": return 2499;
-      case "enterprise": return 4999;
-      default: return 2499;
+      case "basic": return 499;
+      case "professional": return 999;
+      case "enterprise": return 1999;
+      default: return 999;
     }
   };
 
