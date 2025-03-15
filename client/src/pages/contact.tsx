@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -36,6 +36,13 @@ export default function Contact() {
     }
   });
 
+  // Update form message when plan changes
+  useEffect(() => {
+    if (selectedPlan) {
+      form.setValue('message', `I'm interested in the ${selectedPlan} package.`);
+    }
+  }, [selectedPlan, form]);
+
   const mutation = useMutation({
     mutationFn: async (data: ContactMessage) => {
       const res = await apiRequest("POST", "/api/contact", data);
@@ -65,7 +72,6 @@ export default function Contact() {
     { icon: <Instagram className="h-5 w-5" />, label: "Instagram", href: "https://www.instagram.com/eneaaa__m" },
     { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", href: "https://www.linkedin.com/in/enea-muja-16b5b9311" },
   ];
-
 
   return (
     <div className="grid lg:grid-cols-2 gap-12">
