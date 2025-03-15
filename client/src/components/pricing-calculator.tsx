@@ -91,7 +91,13 @@ export function PricingCalculator() {
         <div className="pt-6 border-t">
           <div className="flex items-center justify-between mb-4">
             <span className="text-lg font-semibold">Estimated Total:</span>
-            <span className="text-2xl font-bold">${calculateTotal()}</span>
+            <div className="text-right">
+              <div className="text-2xl font-bold">${calculateTotal()}</div>
+              <div className="text-sm text-muted-foreground">
+                Initial Payment: ${calculateTotal() / 2}<br/>
+                Final Payment: ${calculateTotal() / 2}
+              </div>
+            </div>
           </div>
           <Button asChild className="w-full">
             <Link href="/contact">Get Started</Link>

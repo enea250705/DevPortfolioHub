@@ -1,6 +1,7 @@
 import { CheckCircle2, XCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 const pricingTiers = [
   {
@@ -56,7 +57,13 @@ export function PricingComparison() {
       {pricingTiers.map((tier) => (
         <Card key={tier.name} className="p-6">
           <h3 className="text-2xl font-bold">{tier.name}</h3>
-          <div className="mt-4 text-3xl font-bold">${tier.price}</div>
+          <div className="mt-4">
+            <div className="text-3xl font-bold">${tier.price}</div>
+            <div className="text-sm text-muted-foreground mt-1">
+              50% upfront (${tier.price / 2})<br />
+              50% upon completion (${tier.price / 2})
+            </div>
+          </div>
           <p className="mt-2 text-muted-foreground">{tier.description}</p>
           <ul className="mt-6 space-y-4">
             {tier.features.map((feature, index) => (
@@ -70,7 +77,12 @@ export function PricingComparison() {
               </li>
             ))}
           </ul>
-          <Button className="w-full mt-6">Select {tier.name}</Button>
+          <Button asChild className="w-full mt-6">
+            <Link href={`/contact?plan=${tier.name}`}>Start Your Project</Link>
+          </Button>
+          <p className="text-sm text-muted-foreground text-center mt-4">
+            Secure 50/50 payment plan available
+          </p>
         </Card>
       ))}
     </div>

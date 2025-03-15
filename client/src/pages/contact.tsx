@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { contactMessageSchema, type InsertContactMessage } from "@shared/schema";
+import { contactMessageSchema, type ContactMessage } from "@shared/schema";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLocation } from "wouter"; // Changed to wouter
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -20,7 +21,7 @@ const fadeInUp = {
 
 export default function Contact() {
   const { toast } = useToast();
-  const form = useForm<InsertContactMessage>({
+  const form = useForm<ContactMessage>({
     resolver: zodResolver(contactMessageSchema),
     defaultValues: {
       name: "",
@@ -30,7 +31,7 @@ export default function Contact() {
   });
 
   const mutation = useMutation({
-    mutationFn: async (data: InsertContactMessage) => {
+    mutationFn: async (data: ContactMessage) => {
       const res = await apiRequest("POST", "/api/contact", data);
       return res.json();
     },
@@ -50,7 +51,7 @@ export default function Contact() {
     },
   });
 
-  const onSubmit = (data: InsertContactMessage) => {
+  const onSubmit = (data: ContactMessage) => {
     mutation.mutate(data);
   };
 
@@ -58,6 +59,11 @@ export default function Contact() {
     { icon: <Instagram className="h-5 w-5" />, label: "Instagram", href: "https://www.instagram.com/eneaaa__m" },
     { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", href: "https://www.linkedin.com/in/enea-muja-16b5b9311" },
   ];
+
+  const [location] = useLocation(); // Changed to wouter's useLocation
+  const searchParams = new URLSearchParams(location.split('?')[1]);
+  const selectedPlan = searchParams.get('plan');
+
 
   return (
     <div className="grid lg:grid-cols-2 gap-12">
@@ -76,6 +82,16 @@ export default function Contact() {
             Have a project in mind? I'm here to help turn your ideas into reality.
           </p>
         </motion.div>
+
+        {selectedPlan && (
+          <div className="mb-6 p-4 bg-primary/5 rounded-lg">
+            <p className="font-medium">Selected Plan: {selectedPlan}</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Once you submit this form, we'll review your project requirements and confirm the final quote.
+              The project will begin after the initial 50% payment is received.
+            </p>
+          </div>
+        )}
 
         <motion.div className="space-y-6" variants={fadeInUp}>
           <motion.div 
