@@ -10,6 +10,13 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
+import { motion } from "framer-motion";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
 
 export default function Contact() {
   const { toast } = useToast();
@@ -54,16 +61,28 @@ export default function Contact() {
 
   return (
     <div className="grid lg:grid-cols-2 gap-12">
-      <div className="space-y-8">
-        <div>
+      <motion.div 
+        className="space-y-8"
+        initial="initial"
+        animate="animate"
+        variants={{
+          initial: { opacity: 0 },
+          animate: { opacity: 1, transition: { staggerChildren: 0.2 } }
+        }}
+      >
+        <motion.div variants={fadeInUp}>
           <h1 className="text-4xl font-bold mb-4">Let's Connect</h1>
           <p className="text-muted-foreground">
             Have a project in mind? I'm here to help turn your ideas into reality.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="space-y-6">
-          <div className="flex items-center gap-3">
+        <motion.div className="space-y-6" variants={fadeInUp}>
+          <motion.div 
+            className="flex items-center gap-3"
+            whileHover={{ x: 5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
               <Mail className="h-5 w-5 text-primary" />
             </div>
@@ -71,9 +90,13 @@ export default function Contact() {
               <p className="font-medium">Email</p>
               <p className="text-muted-foreground">info@codewithenea.it</p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex items-center gap-3">
+          <motion.div 
+            className="flex items-center gap-3"
+            whileHover={{ x: 5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
               <Phone className="h-5 w-5 text-primary" />
             </div>
@@ -81,9 +104,13 @@ export default function Contact() {
               <p className="font-medium">Phone</p>
               <p className="text-muted-foreground">+393761024080</p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex items-center gap-3">
+          <motion.div 
+            className="flex items-center gap-3"
+            whileHover={{ x: 5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
               <MapPin className="h-5 w-5 text-primary" />
             </div>
@@ -91,25 +118,32 @@ export default function Contact() {
               <p className="font-medium">Location</p>
               <p className="text-muted-foreground">Milan, IT</p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="flex gap-4">
+        <motion.div className="flex gap-4" variants={fadeInUp}>
           {socialLinks.map((link) => (
-            <a
+            <motion.a
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
               className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
             >
               {link.icon}
-            </a>
+            </motion.a>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <div className="bg-card rounded-lg p-8">
+      <motion.div 
+        className="bg-card rounded-lg p-8"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
@@ -157,14 +191,33 @@ export default function Contact() {
             />
             <Button 
               type="submit" 
-              className="w-full"
+              className="w-full relative overflow-hidden"
               disabled={mutation.isPending}
             >
-              {mutation.isPending ? "Sending..." : "Send Message"}
+              <motion.span
+                initial={false}
+                animate={{
+                  opacity: mutation.isPending ? 0 : 1,
+                  y: mutation.isPending ? 20 : 0
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                Send Message
+              </motion.span>
+              {mutation.isPending && (
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Sending...
+                </motion.div>
+              )}
             </Button>
           </form>
         </Form>
-      </div>
+      </motion.div>
     </div>
   );
 }
