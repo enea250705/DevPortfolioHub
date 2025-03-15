@@ -51,14 +51,34 @@ export default function Terms() {
 
           <h2>Payment Terms</h2>
           <p>
-            Our payment terms include:
+            To ensure transparency and mutual understanding, our payment structure is designed to protect both parties and ensure project success:
           </p>
           <ul>
-            <li>50% upfront deposit before project commencement</li>
-            <li>Remaining balance upon project completion</li>
-            <li>Additional fees for scope changes or extra revisions</li>
-            <li>Late payment fees may apply after 30 days</li>
+            <li>
+              <strong>Initial Deposit:</strong> A 50% deposit of the agreed project cost is required to secure your project slot in our schedule and begin development. This deposit demonstrates commitment from both parties and covers initial development costs.
+            </li>
+            <li>
+              <strong>Final Payment:</strong> The remaining 50% is due upon project completion and before the final handover of files/deployment. Project completion is defined as when all agreed-upon features are implemented and working as specified in the initial project scope.
+            </li>
+            <li>
+              <strong>Scope Changes:</strong> Any features or revisions requested beyond the initially agreed scope will be quoted separately. No additional work will begin without written approval of the associated costs.
+            </li>
+            <li>
+              <strong>Payment Methods:</strong> We accept payments via bank transfer or other secure payment methods as agreed upon in the project contract.
+            </li>
+            <li>
+              <strong>Payment Timeline:</strong> Invoices must be paid within 14 days of issuance. For overdue payments, we reserve the right to:
+              <ul>
+                <li>Pause project development until payment is received</li>
+                <li>Apply a late payment fee of 5% of the outstanding amount</li>
+                <li>Withhold delivery of project files or deployment</li>
+              </ul>
+            </li>
           </ul>
+
+          <p>
+            All payment terms will be clearly outlined in our project agreement, which will be provided before project commencement.
+          </p>
 
           <h2>Limitation of Liability</h2>
           <p>
