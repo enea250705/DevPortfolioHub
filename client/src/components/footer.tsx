@@ -1,10 +1,12 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Instagram, Linkedin, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import { scrollToSection } from "@/lib/utils";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  
+  const [location] = useLocation();
+
   const socialLinks = [
     { icon: <Instagram className="h-5 w-5" />, href: "https://www.instagram.com/eneaaa__m", label: "Instagram" },
     { icon: <Linkedin className="h-5 w-5" />, href: "https://www.linkedin.com/in/enea-muja-16b5b9311", label: "LinkedIn" },
@@ -13,23 +15,42 @@ export function Footer() {
 
   const footerLinks = [
     { title: "Quick Links", items: [
-      { label: "Home", href: "/" },
-      { label: "Services", href: "/services" },
-      { label: "Portfolio", href: "/portfolio" },
-      { label: "Contact", href: "/contact" },
+      { label: "Home", href: "/", section: "hero" },
+      { label: "Services", href: "/services", section: "services" },
+      { label: "Portfolio", href: "/portfolio", section: "portfolio" },
+      { label: "Contact", href: "/contact", section: "contact" },
     ]},
     { title: "Services", items: [
-      { label: "Web Development", href: "/services" },
-      { label: "Frontend Development", href: "/services" },
-      { label: "Backend Development", href: "/services" },
-      { label: "Database Design", href: "/services" },
+      { label: "Web Development", href: "/services", section: "web-development" },
+      { label: "Frontend Development", href: "/services", section: "frontend-development" },
+      { label: "Backend Development", href: "/services", section: "backend-development" },
+      { label: "Database Design", href: "/services", section: "database-design" },
     ]},
     { title: "Contact Info", items: [
       { label: "info@codewithenea.it", href: "mailto:info@codewithenea.it" },
       { label: "+393761024080", href: "tel:+393761024080" },
-      { label: "Milan, IT", href: "#" },
+      { label: "Milan, IT", href: "#location" },
     ]},
   ];
+
+  const handleNavigation = (href: string, section?: string) => {
+    if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+      window.location.href = href;
+      return;
+    }
+
+    if (href === location) {
+      // If we're already on the page, scroll to section
+      if (section) {
+        scrollToSection(section);
+      }
+    } else {
+      // Navigate to new page then scroll
+      if (section) {
+        setTimeout(() => scrollToSection(section), 100);
+      }
+    }
+  };
 
   return (
     <footer className="bg-card mt-24 border-t">
@@ -70,11 +91,12 @@ export function Footer() {
               <ul className="space-y-2">
                 {section.items.map((item) => (
                   <li key={item.label}>
-                    <Link href={item.href}>
-                      <span className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
-                        {item.label}
-                      </span>
-                    </Link>
+                    <span 
+                      onClick={() => handleNavigation(item.href, item.section)}
+                      className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                    >
+                      {item.label}
+                    </span>
                   </li>
                 ))}
               </ul>

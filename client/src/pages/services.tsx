@@ -31,16 +31,26 @@ const services = [
 export default function Services() {
   return (
     <div className="space-y-8">
-      <div className="text-center space-y-4">
+      <div id="services" className="text-center space-y-4">
         <h1 className="text-4xl font-bold">Our Services</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Comprehensive development services leveraging cutting-edge technologies and best practices.
         </p>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {services.map((service) => (
-          <ServiceCard key={service.title} {...service} />
-        ))}
+        <div id="web-development">
+          <ServiceCard key="web-development" {...services[0]} />
+        </div>
+        <div id="frontend-development">
+          <ServiceCard key="frontend-development" {...services[1]} />
+        </div>
+        <div id="backend-development">
+          <ServiceCard key="backend-development" {...services[2]} />
+        </div>
+        <div id="database-design">
+          <ServiceCard key="database-design" {...services[3]} />
+        </div>
       </div>
     </div>
   );

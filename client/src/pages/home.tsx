@@ -44,6 +44,7 @@ export default function Home() {
       {/* Hero Section with Parallax */}
       <motion.section
         ref={ref}
+        id="hero"
         className="py-16 flex flex-col md:flex-row items-center gap-8 overflow-hidden"
       >
         <div className="flex-1 space-y-4">
@@ -99,10 +100,12 @@ export default function Home() {
       </motion.section>
 
       {/* Skills Section */}
-      <SkillsSection />
+      <section id="skills">
+        <SkillsSection />
+      </section>
 
       {/* Features Section */}
-      <section className="py-12">
+      <section id="features" className="py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Why Choose Me?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -127,7 +130,7 @@ export default function Home() {
       </section>
 
       {/* Quotes Section */}
-      <section className="py-12 bg-accent/5">
+      <section id="quotes" className="py-12 bg-accent/5">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Words of Wisdom</h2>
           <p className="text-muted-foreground">Inspirational quotes that guide my development philosophy</p>
@@ -151,7 +154,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 text-center space-y-6 bg-primary/5 rounded-lg p-8">
+      <section id="cta" className="py-12 text-center space-y-6 bg-primary/5 rounded-lg p-8">
         <h2 className="text-3xl font-bold">Ready to Start Your Project?</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Let's discuss how we can work together to bring your ideas to life.
