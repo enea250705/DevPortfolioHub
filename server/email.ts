@@ -3,12 +3,12 @@ import { type ContactMessage } from "@shared/schema";
 
 // Create reusable transporter object using SMTP transport
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || "smtp.gmail.com",
-  port: parseInt(process.env.SMTP_PORT || "587"),
-  secure: false, // true for 465, false for other ports
+  host: "authsmtp.securemail.pro",
+  port: 465,
+  secure: true,
   auth: {
-    user: process.env.SMTP_USER || "your-email@gmail.com",
-    pass: process.env.SMTP_PASS || "your-app-specific-password"
+    user: "info@codewithenea.it",
+    pass: "Enea25072005@"
   }
 });
 
