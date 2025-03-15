@@ -28,23 +28,56 @@ export default function Terms() {
             <li>The rights to use the work in our portfolio</li>
           </ul>
 
-          <h2>User Responsibilities</h2>
-          <p>You agree to:</p>
+          <h2>Project Requirements</h2>
+          <p>
+            To ensure successful project completion, clients agree to:
+          </p>
           <ul>
-            <li>Provide accurate and complete information</li>
-            <li>Maintain the confidentiality of any account credentials</li>
-            <li>Use our services in compliance with applicable laws</li>
-            <li>Pay agreed-upon fees in a timely manner</li>
+            <li>Provide clear project requirements and timely feedback</li>
+            <li>Supply necessary content, images, and materials as agreed</li>
+            <li>Review and approve deliverables within specified timeframes</li>
+            <li>Make payments according to the agreed schedule</li>
+          </ul>
+
+          <h2>Project Modifications</h2>
+          <p>
+            Any changes to the agreed project scope, timeline, or deliverables must be:
+          </p>
+          <ul>
+            <li>Submitted in writing and mutually agreed upon</li>
+            <li>May require additional costs and timeline adjustments</li>
+            <li>Subject to our capacity and current commitments</li>
+          </ul>
+
+          <h2>Payment Terms</h2>
+          <p>
+            Our payment terms include:
+          </p>
+          <ul>
+            <li>50% upfront deposit before project commencement</li>
+            <li>Remaining balance upon project completion</li>
+            <li>Additional fees for scope changes or extra revisions</li>
+            <li>Late payment fees may apply after 30 days</li>
           </ul>
 
           <h2>Limitation of Liability</h2>
           <p>
-            We shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services.
+            We shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services or any project delays or issues beyond our reasonable control.
           </p>
+
+          <h2>Project Termination</h2>
+          <p>
+            Either party may terminate the service agreement with written notice if:
+          </p>
+          <ul>
+            <li>The other party breaches these terms</li>
+            <li>Project requirements significantly change</li>
+            <li>Circumstances make completion impossible</li>
+          </ul>
 
           <h2>Changes to Terms</h2>
           <p>
-            We reserve the right to modify these terms at any time. We will notify users of any material changes by posting the new Terms of Service on this page.
+            We reserve the right to modify these terms at any time. We will notify clients of any material changes by posting the new Terms of Service on this page.
           </p>
 
           <h2>Contact Information</h2>
