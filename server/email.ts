@@ -24,11 +24,34 @@ export async function sendContactEmail(message: ContactMessage) {
     Sent at: ${message.createdAt}
   `;
 
-  // Send email
+  // Send notification email to admin
   await transporter.sendMail({
-    from: process.env.SMTP_USER || "your-email@gmail.com",
-    to: "contact@codewithenea.it",
+    from: "info@codewithenea.it",
+    to: "info@codewithenea.it",
     subject: `New Contact Form Submission from ${message.name}`,
-    text: emailContent,
+    text: `
+New Contact Form Submission:
+
+Name: ${message.name}
+Email: ${message.email}
+Message: ${message.message}
+
+Sent at: ${message.createdAt}
+    `,
+  });
+
+  // Send thank you email to customer
+  await transporter.sendMail({
+    from: "info@codewithenea.it",
+    to: message.email,
+    subject: "Thank you for contacting Code with Enea",
+    text: `
+Dear ${message.name},
+
+Thank you for reaching out to Code with Enea. We have received your message and our team will get back to you within 24-48 hours.
+
+Best regards,
+The Code with Enea Team
+    `,
   });
 }
