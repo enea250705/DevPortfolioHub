@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/navbar";
+import { Footer } from "@/components/footer";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import Portfolio from "@/pages/portfolio";
@@ -37,11 +38,12 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background flex flex-col">
         <Navbar />
-        <main className="container mx-auto px-4 py-8">
+        <main className="container mx-auto px-4 py-8 flex-grow">
           <Router />
         </main>
+        <Footer />
       </div>
       <Toaster />
     </QueryClientProvider>
