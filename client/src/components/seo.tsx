@@ -18,13 +18,13 @@ export function SEO({
 
   useEffect(() => {
     // Update meta tags
-    document.title = `${title}${location ? ` in ${location}` : ''}`;
+    document.title = `${title}${location ? ` in ${location}` : ''} | Top Local Developer`;
 
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 
-        `Leading web development services in ${location}. ${description} Professional web development expertise serving clients globally from our base in Novara.`
+        `Top-rated web development services in ${location}. ${description} Leading local expert in web development serving Novara and surrounding areas with global reach.`
       );
     }
 
@@ -35,28 +35,33 @@ export function SEO({
         'web development Novara',
         'sviluppo web Novara',
         'web developer Novara',
-        'custom websites Novara',
-        'frontend development Italy',
+        'sviluppatore web Novara',
+        'siti web Novara',
+        'web agency Novara',
+        'frontend development Piedmont',
         'backend development Novara',
-        'international web development',
-        'global web solutions',
-        location.toLowerCase(),
-        'web developer'
+        'custom websites Novara',
+        'Novara tech',
+        'local web developer',
+        'Piedmont web services',
+        location.toLowerCase().replace(',', ''),
+        'web developer',
+        'siti web aziendali Novara'
       ];
-      const allKeywords = [...new Set([...baseKeywords, ...keywords])];
-      metaKeywords.setAttribute('content', allKeywords.join(', '));
+      const allKeywords = [...new Set([...baseKeywords, ...keywords])].join(', ');
+      metaKeywords.setAttribute('content', allKeywords);
     }
 
     // Update Open Graph tags
     const ogTitle = document.querySelector('meta[property="og:title"]');
     if (ogTitle) {
-      ogTitle.setAttribute('content', `${title} in ${location} | Global Web Solutions`);
+      ogTitle.setAttribute('content', `${title} in ${location} | Top Local Expert`);
     }
 
     const ogDescription = document.querySelector('meta[property="og:description"]');
     if (ogDescription) {
       ogDescription.setAttribute('content', 
-        `Expert web development services based in Novara, Italy. ${description} Serving clients worldwide.`
+        `Leading web development services in Novara, Italy. ${description} Local expertise with global reach.`
       );
     }
 
