@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { LoadingTransition } from "@/components/loading-transition";
+import { SEO } from "@/components/seo";
 import Navbar from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import Home from "@/pages/home";
@@ -63,8 +64,11 @@ function Router() {
 }
 
 function App() {
+  const [location] = useLocation();
+
   return (
     <QueryClientProvider client={queryClient}>
+      <SEO />
       <div className="min-h-screen bg-background flex flex-col">
         <Navbar />
         <main className="container mx-auto px-4 py-8 flex-grow">
