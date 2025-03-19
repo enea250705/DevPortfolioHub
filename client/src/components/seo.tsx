@@ -32,6 +32,7 @@ export function SEO({
     const metaKeywords = document.querySelector('meta[name="keywords"]');
     if (metaKeywords) {
       const baseKeywords = [
+        // Italian Keywords
         'web development Novara',
         'sviluppo web Novara',
         'web developer Novara',
@@ -42,8 +43,15 @@ export function SEO({
         'backend development Novara',
         'custom websites Novara',
         'Novara tech',
-        'local web developer',
-        'Piedmont web services',
+        'Italian web developer',
+        // Albanian Keywords
+        'zhvillues web Shqiperi',
+        'zhvillim web Shqiperi',
+        'web developer Albania',
+        'programim web Shqiperi',
+        'kompani web Shqiperi',
+        'website developer Albania',
+        // Location specific
         location.toLowerCase().replace(',', ''),
         'web developer',
         'siti web aziendali Novara'
@@ -61,7 +69,7 @@ export function SEO({
     const ogDescription = document.querySelector('meta[property="og:description"]');
     if (ogDescription) {
       ogDescription.setAttribute('content', 
-        `Leading web development services in Novara, Italy. ${description} Local expertise with global reach.`
+        `Leading web development services in Novara, Italy and Albania. ${description} Local expertise with global reach.`
       );
     }
 
