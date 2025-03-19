@@ -56,7 +56,7 @@ export function SEO({
         'web developer',
         'siti web aziendali Novara'
       ];
-      const allKeywords = [...new Set([...baseKeywords, ...keywords])].join(', ');
+      const allKeywords = [...baseKeywords, ...keywords].join(', ');
       metaKeywords.setAttribute('content', allKeywords);
     }
 
