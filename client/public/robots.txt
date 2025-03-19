@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Main languages
+Allow: /it/
+Allow: /sq/
+Allow: /en/
+
+# Important pages
+Allow: /services
+Allow: /portfolio
+Allow: /contact
+Allow: /pricing
+
+# Sitemaps
+Sitemap: https://codewithenea.it/sitemap.xml
+
+# Optimize crawling
+Crawl-delay: 1

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://codewithenea.it/</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codewithenea.it/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://codewithenea.it/it"/>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://codewithenea.it/sq"/>
+  </url>
+  <url>
+    <loc>https://codewithenea.it/services</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codewithenea.it/services"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://codewithenea.it/it/services"/>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://codewithenea.it/sq/services"/>
+  </url>
+  <url>
+    <loc>https://codewithenea.it/portfolio</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codewithenea.it/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://codewithenea.it/it/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://codewithenea.it/sq/portfolio"/>
+  </url>
+  <url>
+    <loc>https://codewithenea.it/contact</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codewithenea.it/contact"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://codewithenea.it/it/contact"/>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://codewithenea.it/sq/contact"/>
+  </url>
+  <url>
+    <loc>https://codewithenea.it/pricing</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codewithenea.it/pricing"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://codewithenea.it/it/pricing"/>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://codewithenea.it/sq/pricing"/>
+  </url>
+</urlset>
