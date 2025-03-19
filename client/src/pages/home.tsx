@@ -54,9 +54,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Top Web Developer in{" "}
+            Transforming Ideas Into{" "}
             <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Novara
+              Digital Reality
             </span>
           </motion.h1>
           <motion.p
@@ -65,7 +65,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Leading web development services in Novara, Italy. Professional solutions for local businesses and international clients. Transforming ideas into digital reality with expertise in modern web technologies.
+            Professional web development services tailored to your needs. Let's build something amazing together.
           </motion.p>
           <motion.div
             className="flex gap-4"
