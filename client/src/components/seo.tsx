@@ -44,6 +44,9 @@ export function SEO({
         'custom websites Novara',
         'Novara tech',
         'Italian web developer',
+        'international web development',
+        'global web solutions',
+        'siti web aziendali Novara',
         // Albanian Keywords
         'zhvillues web Shqiperi',
         'zhvillim web Shqiperi',
@@ -51,6 +54,10 @@ export function SEO({
         'programim web Shqiperi',
         'kompani web Shqiperi',
         'website developer Albania',
+        'zhvillues web Tirane',
+        'zhvillim web profesional',
+        'web developer Tirana',
+        'web development company Albania',
         // Location specific
         location.toLowerCase().replace(',', ''),
         'web developer',
@@ -63,7 +70,7 @@ export function SEO({
     // Update Open Graph tags
     const ogTitle = document.querySelector('meta[property="og:title"]');
     if (ogTitle) {
-      ogTitle.setAttribute('content', `${title} in ${location} | Top Local Expert`);
+      ogTitle.setAttribute('content', `${title} in ${location} | Leading Local Expert`);
     }
 
     const ogDescription = document.querySelector('meta[property="og:description"]');
