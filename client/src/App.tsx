@@ -1,6 +1,6 @@
 import { Switch, Route, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { AnimatePresence, m, LazyMotion, domAnimation } from "framer-motion";
+import { AnimatePresence, m, LazyMotion, domAnimation, domMax } from "framer-motion";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { LoadingTransition } from "@/components/loading-transition";
@@ -164,7 +164,7 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <LazyMotion features={domAnimation} strict>
+      <LazyMotion features={domMax}>
         <SEO />
         <div className="min-h-screen bg-background flex flex-col">
           <ErrorBoundary>
