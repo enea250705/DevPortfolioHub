@@ -1,30 +1,29 @@
-import { Switch, Route, useLocation } from "wouter";
+import * as React from "react";
+import { Switch, Route } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { AnimatePresence, LazyMotion, domMax } from "framer-motion";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { LoadingTransition } from "@/components/loading-transition";
 import { SEO } from "@/components/seo";
-import { Suspense, lazy, useState, useEffect } from "react";
-import React from 'react';
+import { Suspense, lazy } from "react";
 
 // Load Navbar and Footer immediately as they're critical UI components
 import Navbar from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
-// Lazy load all pages and non-critical components
-const Home = lazy(() => import("@/pages/home" /* webpackChunkName: "home" */));
-const Services = lazy(() => import("@/pages/services" /* webpackChunkName: "services" */));
-const Portfolio = lazy(() => import("@/pages/portfolio" /* webpackChunkName: "portfolio" */));
-const Contact = lazy(() => import("@/pages/contact" /* webpackChunkName: "contact" */));
-const Privacy = lazy(() => import("@/pages/privacy" /* webpackChunkName: "privacy" */));
-const Terms = lazy(() => import("@/pages/terms" /* webpackChunkName: "terms" */));
-const Pricing = lazy(() => import("@/pages/pricing" /* webpackChunkName: "pricing" */));
-const NotFound = lazy(() => import("@/pages/not-found" /* webpackChunkName: "not-found" */));
+// Lazy load all pages
+const Home = lazy(() => import("@/pages/home"));
+const Services = lazy(() => import("@/pages/services"));
+const Portfolio = lazy(() => import("@/pages/portfolio"));
+const Contact = lazy(() => import("@/pages/contact"));
+const Privacy = lazy(() => import("@/pages/privacy"));
+const Terms = lazy(() => import("@/pages/terms"));
+const Pricing = lazy(() => import("@/pages/pricing"));
+const NotFound = lazy(() => import("@/pages/not-found"));
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
-  fallback?: React.ReactNode;
 }
 
 interface ErrorBoundaryState {
@@ -59,14 +58,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     });
   }
 
-  resetError = () => {
-    this.setState({
-      hasError: false,
-      error: null,
-      errorInfo: null
-    });
-  };
-
   render() {
     if (this.state.hasError) {
       return (
@@ -78,30 +69,15 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
                 {this.state.error?.message || "An unexpected error occurred"}
               </p>
             </div>
-
-            <div className="space-y-4">
-              <button
-                onClick={this.resetError}
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4"
-              >
-                Try again
-              </button>
-
-              <button
-                onClick={() => window.location.reload()}
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background border border-input hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4"
-              >
-                Reload page
-              </button>
-            </div>
-
-            {process.env.NODE_ENV === 'development' && this.state.errorInfo && (
-              <div className="mt-4 p-4 bg-muted rounded-lg overflow-auto text-left">
-                <pre className="text-xs">
-                  {this.state.errorInfo.componentStack}
-                </pre>
-              </div>
-            )}
+            <button
+              onClick={() => {
+                this.setState({ hasError: false, error: null, errorInfo: null });
+                window.location.reload();
+              }}
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4"
+            >
+              Try again
+            </button>
           </div>
         </div>
       );
@@ -111,53 +87,29 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   }
 }
 
-function Router() {
-  const [location] = useLocation();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 800);
-    return () => clearTimeout(timer);
-  }, [location]);
-
-  return (
-    <>
-      <LoadingTransition isLoading={isLoading} />
-      <AnimatePresence mode="wait">
-        <ErrorBoundary>
-          <Suspense fallback={<LoadingTransition isLoading={true} />}>
-            <Switch>
-              <Route path="/" component={Home} />
-              <Route path="/services" component={Services} />
-              <Route path="/portfolio" component={Portfolio} />
-              <Route path="/contact" component={Contact} />
-              <Route path="/privacy" component={Privacy} />
-              <Route path="/terms" component={Terms} />
-              <Route path="/pricing" component={Pricing} />
-              <Route component={NotFound} />
-            </Switch>
-          </Suspense>
-        </ErrorBoundary>
-      </AnimatePresence>
-    </>
-  );
-}
-
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <LazyMotion features={domMax} strict>
+      <LazyMotion features={domMax}>
         <SEO />
         <div className="min-h-screen bg-background flex flex-col">
           <ErrorBoundary>
             <Navbar />
             <main className="container mx-auto px-4 py-8 flex-grow">
-              <Router />
+              <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                <AnimatePresence mode="wait">
+                  <Switch>
+                    <Route path="/" component={Home} />
+                    <Route path="/services" component={Services} />
+                    <Route path="/portfolio" component={Portfolio} />
+                    <Route path="/contact" component={Contact} />
+                    <Route path="/privacy" component={Privacy} />
+                    <Route path="/terms" component={Terms} />
+                    <Route path="/pricing" component={Pricing} />
+                    <Route component={NotFound} />
+                  </Switch>
+                </AnimatePresence>
+              </Suspense>
             </main>
             <Footer />
           </ErrorBoundary>

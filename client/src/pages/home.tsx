@@ -3,62 +3,47 @@ import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, Quote } from "lucide-react";
 import { BackToTop } from "@/components/back-to-top";
 import { SkillsSection } from "@/components/skills-section";
-import { useScroll, useTransform } from "framer-motion";
-import { m } from "framer-motion";
 import { useRef, useState } from "react";
+import { m } from "framer-motion";
 
-function useParallaxScroll() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  });
+const heroImageUrls = {
+  tiny: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=300&q=75&fm=webp",
+  small: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&q=80&fm=webp",
+  medium: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1024&q=80&fm=webp",
+  large: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  placeholder: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRseHh4eHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/2wBDAR4eHh4dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+};
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  return { ref, y };
-}
+const features = [
+  "Custom Web Development",
+  "Frontend Expertise",
+  "Backend Development", 
+  "Database Design",
+  "API Integration",
+  "Performance Optimization"
+];
+
+const quotes = [
+  {
+    text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+    author: "Martin Fowler"
+  },
+  {
+    text: "First, solve the problem. Then, write the code.",
+    author: "John Johnson"
+  },
+  {
+    text: "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+    author: "Brian W. Kernighan"
+  }
+];
 
 export default function Home() {
-  const { ref, y } = useParallaxScroll();
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  const heroImageUrls = {
-    tiny: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=300&q=75&fm=webp",
-    small: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&q=80&fm=webp",
-    medium: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1024&q=80&fm=webp",
-    large: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80&fm=webp",
-    placeholder: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRseHh4eHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/2wBDAR4eHh4dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-  };
-
-  const features = [
-    "Custom Web Development",
-    "Frontend Expertise",
-    "Backend Development",
-    "Database Design",
-    "API Integration",
-    "Performance Optimization",
-  ];
-
-  const quotes = [
-    {
-      text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-      author: "Martin Fowler"
-    },
-    {
-      text: "First, solve the problem. Then, write the code.",
-      author: "John Johnson"
-    },
-    {
-      text: "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
-      author: "Brian W. Kernighan"
-    }
-  ];
 
   return (
     <div className="space-y-24">
-      {/* Hero Section with Parallax */}
       <section
-        ref={ref}
         id="hero"
         className="min-h-[600px] py-16 flex flex-col md:flex-row items-center gap-8 overflow-hidden"
       >
@@ -74,6 +59,7 @@ export default function Home() {
               Digital Reality
             </span>
           </m.h1>
+
           <m.p
             className="text-muted-foreground text-lg min-h-[56px]"
             initial={{ opacity: 0, y: 20 }}
@@ -82,6 +68,7 @@ export default function Home() {
           >
             Professional web development services tailored to your needs. Let's build something amazing together.
           </m.p>
+
           <m.div
             className="flex gap-4 min-h-[48px]"
             initial={{ opacity: 0, y: 20 }}
@@ -99,9 +86,9 @@ export default function Home() {
             </Button>
           </m.div>
         </div>
+
         <m.div
           className="flex-1 w-full aspect-[16/9] relative"
-          style={{ y }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
@@ -138,7 +125,6 @@ export default function Home() {
                 onLoad={() => setImageLoaded(true)}
                 width="1200"
                 height="675"
-                fetchPriority="high"
                 loading="eager"
                 decoding="async"
               />
@@ -147,12 +133,10 @@ export default function Home() {
         </m.div>
       </section>
 
-      {/* Skills Section */}
       <section id="skills">
         <SkillsSection />
       </section>
 
-      {/* Features Section */}
       <section id="features" className="py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Why Choose Me?</h2>
@@ -177,7 +161,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quotes Section */}
       <section id="quotes" className="py-12 bg-accent/5">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Words of Wisdom</h2>
@@ -201,7 +184,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section id="cta" className="py-12 text-center space-y-6 bg-primary/5 rounded-lg p-8">
         <h2 className="text-3xl font-bold">Ready to Start Your Project?</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
