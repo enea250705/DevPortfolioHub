@@ -5,42 +5,19 @@ import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
 
-// Enable compression for all responses
-app.use(compression({
-  level: 6, // Higher compression level
-  threshold: 1024, // Compress responses larger than 1KB
-  filter: (req: Request, res: Response) => {
-    if (req.headers['x-no-compression']) {
-      return false;
-    }
-    return compression.filter(req, res);
-  }
-}));
-
-// Add cache control headers
-app.use((req: Request, res: Response, next: NextFunction) => {
-  // Cache static assets for 1 week
-  if (req.url.match(/\.(css|js|jpg|jpeg|png|gif|ico|webp|woff2)$/)) {
-    res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
-  }
-  // Cache HTML and API responses for 1 minute
-  else if (req.url.match(/\.(html)$/) || req.url.startsWith('/api/')) {
-    res.setHeader('Cache-Control', 'public, max-age=60');
-  }
-  next();
-});
+// Add compression middleware
+app.use(compression());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Logging middleware
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
 
   const originalResJson = res.json;
-  res.json = function (bodyJson: any, ...args) {
+  res.json = function (bodyJson, ...args) {
     capturedJsonResponse = bodyJson;
     return originalResJson.apply(res, [bodyJson, ...args]);
   };

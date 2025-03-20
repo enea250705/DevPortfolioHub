@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLocation } from "wouter";
 
 const fadeInUp = {
@@ -68,7 +68,7 @@ export default function Contact() {
 
   return (
     <div className="grid lg:grid-cols-2 gap-12">
-      <m.div 
+      <motion.div 
         className="space-y-8"
         initial="initial"
         animate="animate"
@@ -77,28 +77,25 @@ export default function Contact() {
           animate: { opacity: 1, transition: { staggerChildren: 0.2 } }
         }}
       >
-        <m.div variants={fadeInUp}>
+        <motion.div variants={fadeInUp}>
           <h1 className="text-4xl font-bold mb-4">Let's Connect</h1>
           <p className="text-muted-foreground">
             Have a project in mind? I'm here to help turn your ideas into reality.
           </p>
-        </m.div>
+        </motion.div>
 
         {selectedPlan && (
-          <m.div 
-            variants={fadeInUp}
-            className="mb-6 p-4 bg-primary/5 rounded-lg"
-          >
+          <div className="mb-6 p-4 bg-primary/5 rounded-lg">
             <p className="font-medium">Selected Plan: {selectedPlan}</p>
             <p className="text-sm text-muted-foreground mt-1">
               Once you submit this form, we'll review your project requirements and confirm the final quote.
               The project will begin after the initial 50% payment is received.
             </p>
-          </m.div>
+          </div>
         )}
 
-        <m.div className="space-y-6" variants={fadeInUp}>
-          <m.div 
+        <motion.div className="space-y-6" variants={fadeInUp}>
+          <motion.div 
             className="flex items-center gap-3"
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -110,9 +107,9 @@ export default function Contact() {
               <p className="font-medium">Email</p>
               <p className="text-muted-foreground">info@codewithenea.it</p>
             </div>
-          </m.div>
+          </motion.div>
 
-          <m.div 
+          <motion.div 
             className="flex items-center gap-3"
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -124,9 +121,9 @@ export default function Contact() {
               <p className="font-medium">Phone</p>
               <p className="text-muted-foreground">+393761024080</p>
             </div>
-          </m.div>
+          </motion.div>
 
-          <m.div 
+          <motion.div 
             className="flex items-center gap-3"
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -138,12 +135,12 @@ export default function Contact() {
               <p className="font-medium">Location</p>
               <p className="text-muted-foreground">Milan, IT</p>
             </div>
-          </m.div>
-        </m.div>
+          </motion.div>
+        </motion.div>
 
-        <m.div className="flex gap-4" variants={fadeInUp}>
+        <motion.div className="flex gap-4" variants={fadeInUp}>
           {socialLinks.map((link) => (
-            <m.a
+            <motion.a
               key={link.label}
               href={link.href}
               target="_blank"
@@ -153,12 +150,12 @@ export default function Contact() {
               whileTap={{ scale: 0.95 }}
             >
               {link.icon}
-            </m.a>
+            </motion.a>
           ))}
-        </m.div>
-      </m.div>
+        </motion.div>
+      </motion.div>
 
-      <m.div 
+      <motion.div 
         className="bg-card rounded-lg p-8"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -217,7 +214,7 @@ export default function Contact() {
               className="w-full relative overflow-hidden"
               disabled={mutation.isPending}
             >
-              <m.span
+              <motion.span
                 initial={false}
                 animate={{
                   opacity: mutation.isPending ? 0 : 1,
@@ -226,21 +223,21 @@ export default function Contact() {
                 transition={{ duration: 0.2 }}
               >
                 Send Message
-              </m.span>
+              </motion.span>
               {mutation.isPending && (
-                <m.div
+                <motion.div
                   className="absolute inset-0 flex items-center justify-center"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
                 >
                   Sending...
-                </m.div>
+                </motion.div>
               )}
             </Button>
           </form>
         </Form>
-      </m.div>
+      </motion.div>
     </div>
   );
 }

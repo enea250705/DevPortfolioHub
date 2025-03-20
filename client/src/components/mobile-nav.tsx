@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { m, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function MobileNav() {
   const [location] = useLocation();
@@ -21,7 +21,7 @@ export function MobileNav() {
         <Button variant="ghost" size="icon" className="relative">
           <AnimatePresence mode="wait">
             {isOpen ? (
-              <m.div
+              <motion.div
                 key="close"
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
@@ -29,9 +29,9 @@ export function MobileNav() {
                 transition={{ duration: 0.2 }}
               >
                 <X className="h-5 w-5" />
-              </m.div>
+              </motion.div>
             ) : (
-              <m.div
+              <motion.div
                 key="menu"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -39,14 +39,14 @@ export function MobileNav() {
                 transition={{ duration: 0.2 }}
               >
                 <Menu className="h-5 w-5" />
-              </m.div>
+              </motion.div>
             )}
           </AnimatePresence>
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-background/95 backdrop-blur">
-        <m.nav
+        <motion.nav
           className="flex flex-col mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -59,7 +59,7 @@ export function MobileNav() {
             { href: "/pricing", label: "Pricing" },
             { href: "/contact", label: "Contact" },
           ].map((item, index) => (
-            <m.div
+            <motion.div
               key={item.href}
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -81,10 +81,10 @@ export function MobileNav() {
                   {item.label}
                 </span>
               </Link>
-            </m.div>
+            </motion.div>
           ))}
-        </m.nav>
-        <m.div
+        </motion.nav>
+        <motion.div
           className="absolute bottom-8 left-8 right-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export function MobileNav() {
           <p className="text-sm text-muted-foreground text-center">
             Let's build something amazing together
           </p>
-        </m.div>
+        </motion.div>
       </SheetContent>
     </Sheet>
   );
