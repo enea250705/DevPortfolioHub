@@ -11,9 +11,9 @@ import Navbar from "@/components/navbar";
 import LoadingSpinner from "@/components/loading-spinner";
 
 // Lazy load everything else
-const Footer = lazy(() => import("@/components/footer"));
-const Home = lazy(() => import("@/pages/home"));
-const Services = lazy(() => import("@/pages/services"));
+const Footer = lazy(() => import("@/components/footer" /* webpackPrefetch: true */));
+const Home = lazy(() => import("@/pages/home" /* webpackPrefetch: true */));
+const Services = lazy(() => import("@/pages/services" /* webpackPrefetch: true */));
 const Portfolio = lazy(() => import("@/pages/portfolio"));
 const Contact = lazy(() => import("@/pages/contact"));
 const Privacy = lazy(() => import("@/pages/privacy"));

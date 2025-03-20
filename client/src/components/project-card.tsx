@@ -47,7 +47,9 @@ export function ProjectCard({
               className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               onLoad={() => setImageLoaded(true)}
               width="400"
               height="250"
