@@ -109,6 +109,7 @@ export default function Home() {
             width="1200"
             height="675"
             fetchPriority="high"
+            loading="eager"
           />
         </motion.div>
       </motion.section>
