@@ -4,10 +4,10 @@ import { ArrowRight, CheckCircle2, Quote } from "lucide-react";
 import { BackToTop } from "@/components/back-to-top";
 import { SkillsSection } from "@/components/skills-section";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
-// Pre-optimize the hero image URL
-const heroImageUrl = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80&fm=webp";
+// Pre-optimize and preload the hero image
+const heroImageUrl = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80";
 
 export default function Home() {
   const ref = useRef(null);
@@ -42,6 +42,12 @@ export default function Home() {
       author: "Brian W. Kernighan"
     }
   ];
+
+  useEffect(() => {
+    // Preload the hero image
+    const img = new Image();
+    img.src = heroImageUrl;
+  }, []);
 
   return (
     <div className="space-y-24">
@@ -95,20 +101,14 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          {/* Loading placeholder */}
-          {!imageLoaded && (
-            <div className="rounded-lg bg-muted animate-pulse aspect-video" />
-          )}
           <img
             src={heroImageUrl}
             alt="Professional developer workspace"
-            className={`rounded-lg shadow-lg object-cover w-full aspect-video ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            onLoad={() => setImageLoaded(true)}
-            width="1200"
-            height="675"
+            className="rounded-lg shadow-lg object-cover w-full max-w-[800px] mx-auto"
             fetchPriority="high"
+            loading="eager"
+            width="800"
+            height="450"
           />
         </motion.div>
       </motion.section>
