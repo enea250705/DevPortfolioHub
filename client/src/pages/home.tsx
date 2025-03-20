@@ -4,14 +4,23 @@ import { ArrowRight, CheckCircle2, Quote } from "lucide-react";
 import { BackToTop } from "@/components/back-to-top";
 import { SkillsSection } from "@/components/skills-section";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
-// Pre-optimize and preload the hero image
-const heroImageUrl = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80";
+// Pre-optimize hero image with exact dimensions
+const HERO_IMAGE = {
+  src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
+  width: 800,
+  height: 450,
+  blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx0cHBwcHSQkHh8kMy8yMi8vMzM6Ozs1PjpFRTpKVEVGS1BPUFdYWFhaYWhob2tu/9sAQwEVFxccHBwpHBwpaEQwRGhuaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGho/8AAEQgACAAOAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A9B1LxVrmmXHkXOk2c6FWYpb3Ejk4IwMtGvPPoKK1tT0t9QuYpVvo4FVWBWOJT1JzyWPr6UVhGnFSbsjnVGmpOyR//9k="
+};
+
+const preloadImage = (src: string) => {
+  const img = new Image();
+  img.src = src;
+};
 
 export default function Home() {
-  const ref = useRef(null);
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -19,43 +28,16 @@ export default function Home() {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
-  const features = [
-    "Custom Web Development",
-    "Frontend Expertise",
-    "Backend Development",
-    "Database Design",
-    "API Integration",
-    "Performance Optimization",
-  ];
-
-  const quotes = [
-    {
-      text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-      author: "Martin Fowler"
-    },
-    {
-      text: "First, solve the problem. Then, write the code.",
-      author: "John Johnson"
-    },
-    {
-      text: "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
-      author: "Brian W. Kernighan"
-    }
-  ];
-
   useEffect(() => {
-    // Preload the hero image
-    const img = new Image();
-    img.src = heroImageUrl;
+    preloadImage(HERO_IMAGE.src);
   }, []);
 
   return (
     <div className="space-y-24">
-      {/* Hero Section with Parallax */}
       <motion.section
         ref={ref}
-        id="hero"
-        className="py-16 flex flex-col md:flex-row items-center gap-8 overflow-hidden"
+        className="hero-section py-16 flex flex-col md:flex-row items-center gap-8 overflow-hidden"
+        style={{ minHeight: `${HERO_IMAGE.height}px` }}
       >
         <div className="flex-1 space-y-4">
           <motion.h1
@@ -94,31 +76,42 @@ export default function Home() {
             </Button>
           </motion.div>
         </div>
+
         <motion.div
           className="flex-1"
           style={{ y }}
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <img
-            src={heroImageUrl}
-            alt="Professional developer workspace"
-            className="rounded-lg shadow-lg object-cover w-full max-w-[800px] mx-auto"
-            fetchPriority="high"
-            loading="eager"
-            width="800"
-            height="450"
-          />
+          <div 
+            className="aspect-[16/9]"
+            style={{
+              width: '100%',
+              maxWidth: `${HERO_IMAGE.width}px`,
+              height: 'auto',
+              background: `url(${HERO_IMAGE.blurDataURL})`,
+              backgroundSize: 'cover'
+            }}
+          >
+            <img
+              src={HERO_IMAGE.src}
+              alt="Professional developer workspace"
+              width={HERO_IMAGE.width}
+              height={HERO_IMAGE.height}
+              className="w-full h-full object-cover rounded-lg shadow-lg"
+              fetchpriority="high"
+              decoding="async"
+              style={{ contentVisibility: 'auto' }}
+            />
+          </div>
         </motion.div>
       </motion.section>
 
-      {/* Skills Section */}
       <section id="skills">
         <SkillsSection />
       </section>
 
-      {/* Features Section */}
       <section id="features" className="py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Why Choose Me?</h2>
@@ -143,7 +136,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quotes Section */}
       <section id="quotes" className="py-12 bg-accent/5">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Words of Wisdom</h2>
@@ -167,7 +159,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section id="cta" className="py-12 text-center space-y-6 bg-primary/5 rounded-lg p-8">
         <h2 className="text-3xl font-bold">Ready to Start Your Project?</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -185,3 +176,27 @@ export default function Home() {
     </div>
   );
 }
+
+const features = [
+  "Custom Web Development",
+  "Frontend Expertise",
+  "Backend Development",
+  "Database Design",
+  "API Integration",
+  "Performance Optimization",
+];
+
+const quotes = [
+  {
+    text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+    author: "Martin Fowler"
+  },
+  {
+    text: "First, solve the problem. Then, write the code.",
+    author: "John Johnson"
+  },
+  {
+    text: "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+    author: "Brian W. Kernighan"
+  }
+];
