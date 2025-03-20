@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Instagram, Linkedin, Mail } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { scrollToSection } from "@/lib/utils";
 
 export function Footer() {
@@ -42,7 +42,7 @@ export function Footer() {
             </p>
             <div className="flex gap-4">
               {socialLinks.map((link) => (
-                <motion.a
+                <m.a
                   key={link.label}
                   href={link.href}
                   target="_blank"
@@ -53,7 +53,7 @@ export function Footer() {
                   aria-label={link.label}
                 >
                   {link.icon}
-                </motion.a>
+                </m.a>
               ))}
             </div>
           </div>

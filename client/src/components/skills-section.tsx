@@ -1,6 +1,6 @@
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 interface Skill {
   name: string;
@@ -32,7 +32,7 @@ export function SkillsSection() {
                 <span className="text-sm text-muted-foreground">{skill.level}%</span>
               </div>
               <div className="h-2 bg-accent/20 rounded-full overflow-hidden">
-                <motion.div
+                <m.div
                   className={`h-full ${skill.color} rounded-full`}
                   initial={{ width: 0 }}
                   animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}

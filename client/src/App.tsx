@@ -22,30 +22,86 @@ const Terms = lazy(() => import("@/pages/terms" /* webpackChunkName: "terms" */)
 const Pricing = lazy(() => import("@/pages/pricing" /* webpackChunkName: "pricing" */));
 const NotFound = lazy(() => import("@/pages/not-found" /* webpackChunkName: "not-found" */));
 
-class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean; error: Error | null }> {
-  state = { hasError: false, error: null };
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+}
 
-  static getDerivedStateFromError(error: Error) {
-    return { hasError: true, error };
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error: Error | null;
+  errorInfo: React.ErrorInfo | null;
+}
+
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = {
+      hasError: false,
+      error: null,
+      errorInfo: null
+    };
+  }
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return {
+      hasError: true,
+      error,
+      errorInfo: null
+    };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Page Error:', error, errorInfo);
+    console.error('Caught an error:', error, errorInfo);
+    this.setState({
+      error,
+      errorInfo
+    });
   }
+
+  resetError = () => {
+    this.setState({
+      hasError: false,
+      error: null,
+      errorInfo: null
+    });
+  };
 
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex min-h-[400px] items-center justify-center">
-          <div className="text-center space-y-4">
-            <h2 className="text-2xl font-bold">Something went wrong</h2>
-            <p className="text-muted-foreground">Please try refreshing the page</p>
-            <button
-              onClick={() => this.setState({ hasError: false })}
-              className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
-            >
-              Try again
-            </button>
+        <div className="min-h-[400px] w-full flex items-center justify-center p-4">
+          <div className="max-w-md w-full space-y-4 text-center">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-bold tracking-tight">Something went wrong</h2>
+              <p className="text-muted-foreground">
+                {this.state.error?.message || "An unexpected error occurred"}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <button
+                onClick={this.resetError}
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4"
+              >
+                Try again
+              </button>
+
+              <button
+                onClick={() => window.location.reload()}
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background border border-input hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4"
+              >
+                Reload page
+              </button>
+            </div>
+
+            {process.env.NODE_ENV === 'development' && this.state.errorInfo && (
+              <div className="mt-4 p-4 bg-muted rounded-lg overflow-auto text-left">
+                <pre className="text-xs">
+                  {this.state.errorInfo.componentStack}
+                </pre>
+              </div>
+            )}
           </div>
         </div>
       );
@@ -111,11 +167,13 @@ function App() {
       <LazyMotion features={domAnimation} strict>
         <SEO />
         <div className="min-h-screen bg-background flex flex-col">
-          <Navbar />
-          <main className="container mx-auto px-4 py-8 flex-grow">
-            <Router />
-          </main>
-          <Footer />
+          <ErrorBoundary>
+            <Navbar />
+            <main className="container mx-auto px-4 py-8 flex-grow">
+              <Router />
+            </main>
+            <Footer />
+          </ErrorBoundary>
         </div>
         <Toaster />
       </LazyMotion>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowUp } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,7 +29,7 @@ export function BackToTop() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ export function BackToTop() {
           >
             <ArrowUp className="h-5 w-5 text-primary-foreground" />
           </Button>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );
