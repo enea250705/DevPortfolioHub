@@ -2,10 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, Quote } from "lucide-react";
 import { BackToTop } from "@/components/back-to-top";
-import { m, useScroll, useTransform } from "framer-motion";
+import { SkillsSection } from "@/components/skills-section";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
-const heroImageUrl = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80&fm=webp";
+// Pre-optimize and preload the hero image
+const heroImageUrl = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80";
 
 export default function Home() {
   const ref = useRef(null);
@@ -50,13 +52,13 @@ export default function Home() {
   return (
     <div className="space-y-24">
       {/* Hero Section with Parallax */}
-      <m.section
+      <motion.section
         ref={ref}
         id="hero"
         className="py-16 flex flex-col md:flex-row items-center gap-8 overflow-hidden"
       >
         <div className="flex-1 space-y-4">
-          <m.h1
+          <motion.h1
             className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,16 +68,16 @@ export default function Home() {
             <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
               Digital Reality
             </span>
-          </m.h1>
-          <m.p
+          </motion.h1>
+          <motion.p
             className="text-muted-foreground text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             Professional web development services tailored to your needs. Let's build something amazing together.
-          </m.p>
-          <m.div
+          </motion.p>
+          <motion.div
             className="flex gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -90,47 +92,26 @@ export default function Home() {
             <Button variant="outline" size="lg" asChild>
               <Link href="/portfolio">View Portfolio</Link>
             </Button>
-          </m.div>
+          </motion.div>
         </div>
-        <m.div
+        <motion.div
           className="flex-1"
           style={{ y }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <picture>
-            <source
-              srcSet={heroImageUrl}
-              type="image/webp"
-              media="(min-width: 640px)"
-            />
-            <source
-              srcSet={heroImageUrl.replace('w=800', 'w=400')}
-              type="image/webp"
-              media="(max-width: 639px)"
-            />
-            <img
-              src={heroImageUrl.replace('fm=webp', 'fm=jpg')}
-              alt="Professional developer workspace"
-              className="rounded-lg shadow-lg object-cover w-full max-w-[800px] mx-auto"
-              width="800"
-              height="450"
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              onLoad={() => setImageLoaded(true)}
-              style={{
-                opacity: imageLoaded ? 1 : 0,
-                transition: 'opacity 0.3s ease-in-out'
-              }}
-            />
-          </picture>
-          {!imageLoaded && (
-            <div className="absolute inset-0 bg-muted animate-pulse rounded-lg" />
-          )}
-        </m.div>
-      </m.section>
+          <img
+            src={heroImageUrl}
+            alt="Professional developer workspace"
+            className="rounded-lg shadow-lg object-cover w-full max-w-[800px] mx-auto"
+            fetchPriority="high"
+            loading="eager"
+            width="800"
+            height="450"
+          />
+        </motion.div>
+      </motion.section>
 
       {/* Skills Section */}
       <section id="skills">
@@ -147,7 +128,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <m.div
+            <motion.div
               key={feature}
               className="flex items-center gap-3 p-4 rounded-lg bg-card hover:bg-accent/5 transition-colors"
               initial={{ opacity: 0, y: 20 }}
@@ -157,7 +138,7 @@ export default function Home() {
             >
               <CheckCircle2 className="h-5 w-5 text-primary" />
               <span>{feature}</span>
-            </m.div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -170,7 +151,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {quotes.map((quote, index) => (
-            <m.div
+            <motion.div
               key={index}
               className="bg-card p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 relative"
               initial={{ opacity: 0, y: 20 }}
@@ -181,7 +162,7 @@ export default function Home() {
               <Quote className="h-8 w-8 text-primary/20 absolute -top-4 -left-4" />
               <p className="text-lg mb-4 italic">{quote.text}</p>
               <p className="text-sm text-muted-foreground">- {quote.author}</p>
-            </m.div>
+            </motion.div>
           ))}
         </div>
       </section>
