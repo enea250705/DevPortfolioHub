@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface LoadingTransitionProps {
   isLoading: boolean;
@@ -6,7 +6,7 @@ interface LoadingTransitionProps {
 
 export function LoadingTransition({ isLoading }: LoadingTransitionProps) {
   return (
-    <motion.div
+    <m.div
       initial={false}
       animate={{
         opacity: isLoading ? 1 : 0,
@@ -15,19 +15,19 @@ export function LoadingTransition({ isLoading }: LoadingTransitionProps) {
       className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
     >
       <div className="flex h-full w-full items-center justify-center">
-        <motion.div
+        <m.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.5, opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="relative h-16 w-16"
         >
-          <motion.div
+          <m.div
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
             className="absolute inset-0 border-4 border-primary/20 rounded-full"
           />
-          <motion.div
+          <m.div
             animate={{ rotate: 360 }}
             transition={{ 
               duration: 1.5, 
@@ -37,8 +37,8 @@ export function LoadingTransition({ isLoading }: LoadingTransitionProps) {
             }}
             className="absolute inset-0 border-4 border-t-primary rounded-full"
           />
-        </motion.div>
+        </m.div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

@@ -3,14 +3,17 @@ import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, Quote } from "lucide-react";
 import { BackToTop } from "@/components/back-to-top";
 import { SkillsSection } from "@/components/skills-section";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
+import { m } from "framer-motion";
 import { useRef, useState } from "react";
 
-// Pre-optimize the hero image URLs with different sizes
+// In heroImageUrls object:
 const heroImageUrls = {
+  tiny: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=300&q=75&fm=webp",
   small: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&q=80&fm=webp",
   medium: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1024&q=80&fm=webp",
-  large: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80&fm=webp"
+  large: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80&fm=webp",
+  placeholder: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRseHh4dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/2wBDAR4eHh4dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=" // Blur placeholder
 };
 
 export default function Home() {
@@ -50,13 +53,13 @@ export default function Home() {
   return (
     <div className="space-y-24">
       {/* Hero Section with Parallax */}
-      <motion.section
+      <m.section
         ref={ref}
         id="hero"
         className="min-h-[600px] py-16 flex flex-col md:flex-row items-center gap-8 overflow-hidden"
       >
         <div className="flex-1 space-y-4">
-          <motion.h1
+          <m.h1
             className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl min-h-[80px]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,16 +69,16 @@ export default function Home() {
             <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
               Digital Reality
             </span>
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             className="text-muted-foreground text-lg min-h-[56px]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             Professional web development services tailored to your needs. Let's build something amazing together.
-          </motion.p>
-          <motion.div
+          </m.p>
+          <m.div
             className="flex gap-4 min-h-[48px]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -90,47 +93,57 @@ export default function Home() {
             <Button variant="outline" size="lg" asChild>
               <Link href="/portfolio">View Portfolio</Link>
             </Button>
-          </motion.div>
+          </m.div>
         </div>
-        <motion.div
+        <m.div
           className="flex-1 w-full aspect-[16/9] relative"
           style={{ y }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          {/* Loading placeholder */}
           <div className="relative h-[250px] md:h-[400px] overflow-hidden">
-            {!imageLoaded && (
-              <div className="absolute inset-0 rounded-lg bg-muted animate-pulse" />
-            )}
+            {/* Blur placeholder */}
+            <img
+              src={heroImageUrls.placeholder}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover blur-lg scale-110"
+              aria-hidden="true"
+            />
+
             <picture>
               <source
-                media="(min-width: 1024px)"
+                media="(min-width: 1280px)"
                 srcSet={heroImageUrls.large}
                 type="image/webp"
               />
               <source
-                media="(min-width: 640px)"
+                media="(min-width: 1024px)"
                 srcSet={heroImageUrls.medium}
                 type="image/webp"
               />
+              <source
+                media="(min-width: 640px)"
+                srcSet={heroImageUrls.small}
+                type="image/webp"
+              />
               <img
-                src={heroImageUrls.small}
+                src={heroImageUrls.tiny}
                 alt="Professional developer workspace"
-                className={`rounded-lg shadow-lg object-cover w-full h-full ${
+                className={`absolute inset-0 w-full h-full object-cover ${
                   imageLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
+                } transition-opacity duration-500`}
                 onLoad={() => setImageLoaded(true)}
                 width="1200"
                 height="675"
                 fetchPriority="high"
                 loading="eager"
+                decoding="async"
               />
             </picture>
           </div>
-        </motion.div>
-      </motion.section>
+        </m.div>
+      </m.section>
 
       {/* Skills Section */}
       <section id="skills">
@@ -147,7 +160,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <motion.div
+            <m.div
               key={feature}
               className="flex items-center gap-3 p-4 rounded-lg bg-card hover:bg-accent/5 transition-colors"
               initial={{ opacity: 0, y: 20 }}
@@ -157,7 +170,7 @@ export default function Home() {
             >
               <CheckCircle2 className="h-5 w-5 text-primary" />
               <span>{feature}</span>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </section>
@@ -170,7 +183,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {quotes.map((quote, index) => (
-            <motion.div
+            <m.div
               key={index}
               className="bg-card p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 relative"
               initial={{ opacity: 0, y: 20 }}
@@ -181,7 +194,7 @@ export default function Home() {
               <Quote className="h-8 w-8 text-primary/20 absolute -top-4 -left-4" />
               <p className="text-lg mb-4 italic">{quote.text}</p>
               <p className="text-sm text-muted-foreground">- {quote.author}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </section>

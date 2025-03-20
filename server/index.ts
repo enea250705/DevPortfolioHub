@@ -5,12 +5,25 @@ import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
 
-// Add compression middleware
-app.use(compression());
+// Enable compression for all responses
+app.use(compression({
+  level: 6, // Higher compression level
+  threshold: 1024 // Compress responses larger than 1KB
+}));
+
+// Add cache control headers
+app.use((req, res, next) => {
+  // Cache static assets for 1 week
+  if (req.url.match(/\.(css|js|jpg|jpeg|png|gif|ico|webp|woff2)$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+  }
+  next();
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Logging middleware
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { MobileNav } from "./mobile-nav";
 
 export default function Navbar() {
@@ -18,7 +18,7 @@ export default function Navbar() {
       >
         {children}
         {location === href && (
-          <motion.div
+          <m.div
             layoutId="underline"
             className="absolute left-0 top-full h-[2px] w-full bg-primary"
             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
