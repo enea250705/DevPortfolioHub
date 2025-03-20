@@ -1,7 +1,4 @@
-import dynamic from 'next/dynamic';
-
-const CheckCircle2 = dynamic(() => import('lucide-react').then(mod => mod.CheckCircle2));
-const XCircle = dynamic(() => import('lucide-react').then(mod => mod.XCircle));
+import { CheckCircle2, XCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
