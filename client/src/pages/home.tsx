@@ -4,25 +4,14 @@ import { ArrowRight, CheckCircle2, Quote } from "lucide-react";
 import { BackToTop } from "@/components/back-to-top";
 import { SkillsSection } from "@/components/skills-section";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
-const quotes = [
-  {
-    text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-    author: "Martin Fowler"
-  },
-  {
-    text: "First, solve the problem. Then, write the code.",
-    author: "John Johnson"
-  },
-  {
-    text: "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
-    author: "Brian W. Kernighan"
-  }
-];
+// Pre-optimize the hero image URL
+const heroImageUrl = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80&fm=webp";
 
 export default function Home() {
   const ref = useRef(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -37,6 +26,21 @@ export default function Home() {
     "Database Design",
     "API Integration",
     "Performance Optimization",
+  ];
+
+  const quotes = [
+    {
+      text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+      author: "Martin Fowler"
+    },
+    {
+      text: "First, solve the problem. Then, write the code.",
+      author: "John Johnson"
+    },
+    {
+      text: "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+      author: "Brian W. Kernighan"
+    }
   ];
 
   return (
@@ -91,10 +95,20 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
+          {/* Loading placeholder */}
+          {!imageLoaded && (
+            <div className="rounded-lg bg-muted animate-pulse aspect-video" />
+          )}
           <img
-            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+            src={heroImageUrl}
             alt="Professional developer workspace"
-            className="rounded-lg shadow-lg object-cover w-full aspect-video"
+            className={`rounded-lg shadow-lg object-cover w-full aspect-video ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => setImageLoaded(true)}
+            width="1200"
+            height="675"
+            fetchPriority="high"
           />
         </motion.div>
       </motion.section>
