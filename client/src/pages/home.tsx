@@ -49,11 +49,11 @@ export default function Home() {
       <motion.section
         ref={ref}
         id="hero"
-        className="min-h-[600px] py-16 flex flex-col md:flex-row items-center gap-8 overflow-hidden"
+        className="py-16 flex flex-col md:flex-row items-center gap-8 overflow-hidden"
       >
         <div className="flex-1 space-y-4">
           <motion.h1
-            className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl min-h-[80px]"
+            className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -64,7 +64,7 @@ export default function Home() {
             </span>
           </motion.h1>
           <motion.p
-            className="text-muted-foreground text-lg min-h-[56px]"
+            className="text-muted-foreground text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -72,7 +72,7 @@ export default function Home() {
             Professional web development services tailored to your needs. Let's build something amazing together.
           </motion.p>
           <motion.div
-            className="flex gap-4 min-h-[48px]"
+            className="flex gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -89,7 +89,7 @@ export default function Home() {
           </motion.div>
         </div>
         <motion.div
-          className="flex-1 w-full aspect-[16/9] relative"
+          className="flex-1"
           style={{ y }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -97,12 +97,12 @@ export default function Home() {
         >
           {/* Loading placeholder */}
           {!imageLoaded && (
-            <div className="absolute inset-0 rounded-lg bg-muted animate-pulse" />
+            <div className="rounded-lg bg-muted animate-pulse aspect-video" />
           )}
           <img
             src={heroImageUrl}
             alt="Professional developer workspace"
-            className={`rounded-lg shadow-lg object-cover w-full h-full ${
+            className={`rounded-lg shadow-lg object-cover w-full aspect-video ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             onLoad={() => setImageLoaded(true)}
