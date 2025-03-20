@@ -6,8 +6,12 @@ import { SkillsSection } from "@/components/skills-section";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 
-// Pre-optimize the hero image URL
-const heroImageUrl = "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80&fm=webp";
+// Pre-optimize the hero image URLs with different sizes
+const heroImageUrls = {
+  small: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&q=80&fm=webp",
+  medium: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1024&q=80&fm=webp",
+  large: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80&fm=webp"
+};
 
 export default function Home() {
   const ref = useRef(null);
@@ -96,21 +100,35 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.6 }}
         >
           {/* Loading placeholder */}
-          {!imageLoaded && (
-            <div className="absolute inset-0 rounded-lg bg-muted animate-pulse" />
-          )}
-          <img
-            src={heroImageUrl}
-            alt="Professional developer workspace"
-            className={`rounded-lg shadow-lg object-cover w-full h-full ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            onLoad={() => setImageLoaded(true)}
-            width="1200"
-            height="675"
-            fetchPriority="high"
-            loading="eager"
-          />
+          <div className="relative h-[250px] md:h-[400px] overflow-hidden">
+            {!imageLoaded && (
+              <div className="absolute inset-0 rounded-lg bg-muted animate-pulse" />
+            )}
+            <picture>
+              <source
+                media="(min-width: 1024px)"
+                srcSet={heroImageUrls.large}
+                type="image/webp"
+              />
+              <source
+                media="(min-width: 640px)"
+                srcSet={heroImageUrls.medium}
+                type="image/webp"
+              />
+              <img
+                src={heroImageUrls.small}
+                alt="Professional developer workspace"
+                className={`rounded-lg shadow-lg object-cover w-full h-full ${
+                  imageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                onLoad={() => setImageLoaded(true)}
+                width="1200"
+                height="675"
+                fetchPriority="high"
+                loading="eager"
+              />
+            </picture>
+          </div>
         </motion.div>
       </motion.section>
 

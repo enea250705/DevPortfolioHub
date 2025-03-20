@@ -15,6 +15,16 @@ interface ProjectCardProps {
   technologies: string[];
 }
 
+function getResponsiveImageUrls(imageUrl: string) {
+  // Remove any existing URL parameters
+  const baseUrl = imageUrl.split('?')[0];
+  return {
+    small: `${baseUrl}?auto=format&fit=crop&w=400&q=80&fm=webp`,
+    medium: `${baseUrl}?auto=format&fit=crop&w=600&q=80&fm=webp`,
+    large: `${baseUrl}?auto=format&fit=crop&w=800&q=80&fm=webp`
+  };
+}
+
 export function ProjectCard({
   title,
   description,
@@ -22,9 +32,7 @@ export function ProjectCard({
   technologies,
 }: ProjectCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  // Convert image URL to WebP if it's a JPEG/PNG
-  const optimizedImageUrl = imageUrl.replace(/\.(jpe?g|png)$/i, '.webp');
+  const responsiveUrls = getResponsiveImageUrls(imageUrl);
 
   return (
     <motion.div
@@ -35,14 +43,22 @@ export function ProjectCard({
     >
       <Card className="overflow-hidden group">
         <div className="relative h-[250px] overflow-hidden">
-          {/* Loading placeholder */}
           {!imageLoaded && (
             <div className="absolute inset-0 bg-muted animate-pulse" />
           )}
           <picture>
-            <source srcSet={optimizedImageUrl} type="image/webp" />
+            <source
+              media="(min-width: 1024px)"
+              srcSet={responsiveUrls.large}
+              type="image/webp"
+            />
+            <source
+              media="(min-width: 640px)"
+              srcSet={responsiveUrls.medium}
+              type="image/webp"
+            />
             <img
-              src={imageUrl}
+              src={responsiveUrls.small}
               alt={title}
               className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
