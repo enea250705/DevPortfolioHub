@@ -65,17 +65,132 @@
           {
             "@type": "City",
             "name": "Novara",
-            "sameAs": "https://www.comune.novara.it"
+            "sameAs": "https://www.comune.novara.it",
+            "containsPlace": [
+              {
+                "@type": "Place",
+                "name": "Centro Storico",
+                "description": "Expert web development in historic Novara"
+              },
+              {
+                "@type": "Place",
+                "name": "Sant'Agabio",
+                "description": "Professional web services in Sant'Agabio"
+              },
+              {
+                "@type": "Place",
+                "name": "San Martino",
+                "description": "Custom website development in San Martino"
+              },
+              {
+                "@type": "Place",
+                "name": "Veveri",
+                "description": "Web solutions in Veveri district"
+              },
+              {
+                "@type": "Place",
+                "name": "Bicocca",
+                "description": "E-commerce development in Bicocca area"
+              }
+            ]
           },
           {
             "@type": "AdministrativeArea",
-            "name": "Piedmont"
+            "name": "Piedmont",
+            "containsPlace": [
+              {
+                "@type": "City",
+                "name": "Novara",
+                "description": "Primary service area - web development hub"
+              },
+              {
+                "@type": "City",
+                "name": "Trecate",
+                "description": "Extended service area for web solutions"
+              },
+              {
+                "@type": "City",
+                "name": "Galliate",
+                "description": "Custom web development services"
+              }
+            ]
           }
         ],
         "sameAs": [
           "https://www.instagram.com/eneaaa__m",
           "https://www.linkedin.com/in/enea-muja-16b5b9311"
-        ]
+        ],
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Web Development Services in Novara",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom Website Development",
+                "description": "Professional website development services in Novara and Piedmont region"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "E-commerce Solutions",
+                "description": "Custom e-commerce development for businesses in Novara and surrounding areas"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Web Application Development",
+                "description": "Custom web application development in Novara and Piedmont"
+              }
+            }
+          ]
+        },
+        "faqPage": {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Where are your web development services available in Novara?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We provide web development services throughout Novara, including Centro Storico, Sant'Agabio, San Martino, Veveri, and Bicocca. We also serve the wider Piedmont region including Trecate and Galliate."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What types of web development services do you offer in Novara?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We offer custom website development, e-commerce solutions, web application development, and full-stack development services tailored to Novara businesses' specific needs."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you provide services in Italian?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, we provide services in Italian and English, ensuring clear communication with local businesses in Novara and international clients."
+              }
+            }
+          ]
+        }
       }
     </script>
 

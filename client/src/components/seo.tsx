@@ -26,6 +26,57 @@ export function SEO({
     // Update document language
     document.documentElement.lang = language;
 
+    // Generate local business schema for Albanian cities
+    if (language === 'sq' && cityName) {
+      const localBusinessSchema = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": `CodeWithEnea - Zhvillues Web në ${cityName}`,
+        "description": `Shërbime profesionale të zhvillimit web në ${cityName}. ${description}`,
+        "@id": `https://codewithenea.it/sq/${cityName.toLowerCase()}`,
+        "url": `https://codewithenea.it/sq/${cityName.toLowerCase()}`,
+        "telephone": "+393761024080",
+        "email": "info@codewithenea.it",
+        "areaServed": neighborhoods,
+        "priceRange": "€€",
+        "knowsLanguage": ["sq", "en", "it"]
+      };
+
+      let scriptTag = document.querySelector('#local-business-schema');
+      if (!scriptTag) {
+        scriptTag = document.createElement('script');
+        scriptTag.id = 'local-business-schema';
+        scriptTag.type = 'application/ld+json';
+        document.head.appendChild(scriptTag);
+      }
+      scriptTag.textContent = JSON.stringify(localBusinessSchema);
+    }
+
+    // Add news article schema for fresh content signals
+    if (language === 'sq' && cityName) {
+      const newsArticleSchema = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": `Zhvillues Web Profesional në ${cityName}`,
+        "datePublished": "2025-03-21T08:00:00+01:00",
+        "dateModified": "2025-03-21T08:00:00+01:00",
+        "description": `Shërbime profesionale të zhvillimit web në ${cityName}. ${description}`,
+        "author": {
+          "@type": "Person",
+          "name": "Enea Muja"
+        }
+      };
+
+      let scriptTag = document.querySelector('#news-article-schema');
+      if (!scriptTag) {
+        scriptTag = document.createElement('script');
+        scriptTag.id = 'news-article-schema';
+        scriptTag.type = 'application/ld+json';
+        document.head.appendChild(scriptTag);
+      }
+      scriptTag.textContent = JSON.stringify(newsArticleSchema);
+    }
+
     // Generate breadcrumb data
     const breadcrumbData = {
       "@context": "https://schema.org",

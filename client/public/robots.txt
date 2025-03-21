@@ -12,7 +12,7 @@ Allow: /portfolio
 Allow: /contact
 Allow: /pricing
 
-# Albanian city pages
+# Albanian city pages - explicitly allow crawling
 Allow: /sq/tirane
 Allow: /sq/durres
 Allow: /sq/vlore
@@ -22,7 +22,9 @@ Allow: /sq/fier
 Allow: /sq/korce
 
 # Sitemaps
+Sitemap: https://codewithenea.it/sitemap-index.xml
 Sitemap: https://codewithenea.it/sitemap.xml
+Sitemap: https://codewithenea.it/sq/sitemap.xml
 
 # Optimize crawling
 Crawl-delay: 1
