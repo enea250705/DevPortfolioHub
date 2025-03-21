@@ -196,6 +196,37 @@ export function SEO({
       metaTag.setAttribute('content', content);
     });
 
+    // Add sitemap link in header
+    let sitemapLink = document.querySelector('link[rel="sitemap"]');
+    if (!sitemapLink) {
+      sitemapLink = document.createElement('link');
+      sitemapLink.setAttribute('rel', 'sitemap');
+      sitemapLink.setAttribute('type', 'application/xml');
+      sitemapLink.setAttribute('title', 'Sitemap');
+      sitemapLink.setAttribute('href', '/sitemap-index.xml');
+      document.head.appendChild(sitemapLink);
+    }
+
+    // Add language alternates for all cities if this is a city page
+    if (cityName && language === 'sq') {
+      const cities = ['tirane', 'durres', 'vlore', 'shkoder', 'elbasan', 'fier', 'korce'];
+      cities.forEach(city => {
+        let linkTag = document.querySelector(`link[hreflang="sq"][href*="${city}"]`);
+        if (!linkTag) {
+          linkTag = document.createElement('link');
+          linkTag.setAttribute('rel', 'alternate');
+          linkTag.setAttribute('hreflang', 'sq');
+          linkTag.setAttribute('href', `https://codewithenea.it/sq/${city}`);
+          document.head.appendChild(linkTag);
+        }
+      });
+    }
+
+    // Add XML link header
+    const linkHeader = document.createElement('meta');
+    linkHeader.setAttribute('http-equiv', 'Link');
+    linkHeader.setAttribute('content', '</sitemap-index.xml>; rel="sitemap"');
+    document.head.appendChild(linkHeader);
   }, [title, description, keywords, location, language, cityName, neighborhoods, currentPath]);
 
   return null;

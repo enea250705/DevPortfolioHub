@@ -12,7 +12,7 @@ Allow: /portfolio
 Allow: /contact
 Allow: /pricing
 
-# Albanian city pages - explicitly allow crawling
+# Albanian city pages - explicitly allow crawling with high priority
 Allow: /sq/tirane
 Allow: /sq/durres
 Allow: /sq/vlore
@@ -25,6 +25,13 @@ Allow: /sq/korce
 Sitemap: https://codewithenea.it/sitemap-index.xml
 Sitemap: https://codewithenea.it/sitemap.xml
 Sitemap: https://codewithenea.it/sq/sitemap.xml
+Sitemap: https://codewithenea.it/sq/news-sitemap.xml
 
-# Optimize crawling
+# Optimize crawling for Albanian pages
+Crawl-delay: 1
+
+# Special directives for Googlebot
+User-agent: Googlebot
+# Prioritize Albanian city pages
+Allow: /sq/
 Crawl-delay: 1

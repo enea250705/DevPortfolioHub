@@ -18,6 +18,7 @@
 
     <title>CodeWithEnea - Zhvillues Web Profesional në Tiranë | Zgjidhje Moderne për Biznesin Tuaj</title>
 
+    <!-- Enhanced Schema.org data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -64,7 +65,67 @@
         "addressLocality": "Tiranë",
         "addressCountry": "AL"
       },
-      "areaServed": ["Qendër", "Kombinat", "Laprakë", "Kinostudio", "Selitë", "Ali Demi", "Don Bosko"]
+      "areaServed": ["Qendër", "Kombinat", "Laprakë", "Kinostudio", "Selitë", "Ali Demi", "Don Bosko"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Shërbime Web në Tiranë",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Zhvillim i Website-ve",
+              "description": "Zhvillojmë website profesionale për bizneset në Tiranë"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "E-commerce",
+              "description": "Platforma profesionale e-commerce për bizneset në Tiranë"
+            }
+          }
+        ]
+      },
+      "faqPage": {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Cilat zona në Tiranë mbuloni me shërbimet tuaja?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ofrojmë shërbime në të gjithë Tiranën, duke përfshirë Qendër, Kombinat, Laprakë, Kinostudio, Selitë, Ali Demi dhe Don Bosko."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Çfarë shërbimesh web ofroni në Tiranë?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ofrojmë zhvillim të website-ve, e-commerce, aplikacione web dhe zgjidhje të personalizuara dixhitale për bizneset në Tiranë."
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- News Article Schema for freshness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": "Shërbime Profesionale të Zhvillimit Web në Tiranë",
+      "datePublished": "2025-03-21T08:00:00+01:00",
+      "dateModified": "2025-03-21T08:00:00+01:00",
+      "description": "Lajme të reja për shërbimet e zhvillimit web në Tiranë. Zgjidhje moderne dixhitale për bizneset në kryeqytet.",
+      "image": "https://codewithenea.it/images/tirana-web-development.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Enea Muja"
+      }
     }
     </script>
   </head>
