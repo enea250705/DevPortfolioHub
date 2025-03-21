@@ -12,6 +12,15 @@ Allow: /portfolio
 Allow: /contact
 Allow: /pricing
 
+# Albanian city pages
+Allow: /sq/tirane
+Allow: /sq/durres
+Allow: /sq/vlore
+Allow: /sq/shkoder
+Allow: /sq/elbasan
+Allow: /sq/fier
+Allow: /sq/korce
+
 # Sitemaps
 Sitemap: https://codewithenea.it/sitemap.xml
 
