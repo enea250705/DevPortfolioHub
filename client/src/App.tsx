@@ -1,4 +1,4 @@
-import { Switch, Route, useLocation, Redirect } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
 import { queryClient } from "./lib/queryClient";
@@ -62,6 +62,7 @@ const KorcePortfolio = lazy(() => import("./pages/sq/korce/portfolio"));
 const KorceContact = lazy(() => import("./pages/sq/korce/contact"));
 const KorceAbout = lazy(() => import("./pages/sq/korce/about"));
 
+
 // Animation variants
 const pageVariants = {
   initial: {
@@ -115,10 +116,42 @@ function App() {
             >
               <Suspense fallback={<LoadingTransition isLoading={true} />}>
                 <Switch>
-                  {/* Language redirects */}
-                  <Route path="/sq">
-                    <Redirect to="/sq/tirane" />
-                  </Route>
+                  {/* City-specific routes first */}
+                  <Route path="/sq/tirane" component={TiraneIndex} />
+                  <Route path="/sq/tirane/services" component={TiraneServices} />
+                  <Route path="/sq/tirane/portfolio" component={TiranePortfolio} />
+                  <Route path="/sq/tirane/contact" component={TiraneContact} />
+                  <Route path="/sq/tirane/about" component={TiraneAbout} />
+                  <Route path="/sq/durres" component={DurresIndex} />
+                  <Route path="/sq/durres/services" component={DurresServices} />
+                  <Route path="/sq/durres/portfolio" component={DurresPortfolio} />
+                  <Route path="/sq/durres/contact" component={DurresContact} />
+                  <Route path="/sq/durres/about" component={DurresAbout} />
+                  <Route path="/sq/vlore" component={VloreIndex} />
+                  <Route path="/sq/vlore/services" component={VloreServices} />
+                  <Route path="/sq/vlore/portfolio" component={VlorePortfolio} />
+                  <Route path="/sq/vlore/contact" component={VloreContact} />
+                  <Route path="/sq/vlore/about" component={VloreAbout} />
+                  <Route path="/sq/shkoder" component={ShkoderIndex} />
+                  <Route path="/sq/shkoder/services" component={ShkoderServices} />
+                  <Route path="/sq/shkoder/portfolio" component={ShkoderPortfolio} />
+                  <Route path="/sq/shkoder/contact" component={ShkoderContact} />
+                  <Route path="/sq/shkoder/about" component={ShkoderAbout} />
+                  <Route path="/sq/elbasan" component={ElbasanIndex} />
+                  <Route path="/sq/elbasan/services" component={ElbasanServices} />
+                  <Route path="/sq/elbasan/portfolio" component={ElbasanPortfolio} />
+                  <Route path="/sq/elbasan/contact" component={ElbasanContact} />
+                  <Route path="/sq/elbasan/about" component={ElbasanAbout} />
+                  <Route path="/sq/fier" component={FierIndex} />
+                  <Route path="/sq/fier/services" component={FierServices} />
+                  <Route path="/sq/fier/portfolio" component={FierPortfolio} />
+                  <Route path="/sq/fier/contact" component={FierContact} />
+                  <Route path="/sq/fier/about" component={FierAbout} />
+                  <Route path="/sq/korce" component={KorceIndex} />
+                  <Route path="/sq/korce/services" component={KorceServices} />
+                  <Route path="/sq/korce/portfolio" component={KorcePortfolio} />
+                  <Route path="/sq/korce/contact" component={KorceContact} />
+                  <Route path="/sq/korce/about" component={KorceAbout} />
 
                   {/* Main routes */}
                   <Route path="/" component={Home} />
@@ -128,55 +161,6 @@ function App() {
                   <Route path="/privacy" component={Privacy} />
                   <Route path="/terms" component={Terms} />
                   <Route path="/pricing" component={Pricing} />
-
-                  {/* Tiranë routes */}
-                  <Route path="/sq/tirane" component={TiraneIndex} />
-                  <Route path="/sq/tirane/services" component={TiraneServices} />
-                  <Route path="/sq/tirane/portfolio" component={TiranePortfolio} />
-                  <Route path="/sq/tirane/contact" component={TiraneContact} />
-                  <Route path="/sq/tirane/about" component={TiraneAbout} />
-
-                  {/* Durrës routes */}
-                  <Route path="/sq/durres" component={DurresIndex} />
-                  <Route path="/sq/durres/services" component={DurresServices} />
-                  <Route path="/sq/durres/portfolio" component={DurresPortfolio} />
-                  <Route path="/sq/durres/contact" component={DurresContact} />
-                  <Route path="/sq/durres/about" component={DurresAbout} />
-
-                  {/* Vlorë routes */}
-                  <Route path="/sq/vlore" component={VloreIndex} />
-                  <Route path="/sq/vlore/services" component={VloreServices} />
-                  <Route path="/sq/vlore/portfolio" component={VlorePortfolio} />
-                  <Route path="/sq/vlore/contact" component={VloreContact} />
-                  <Route path="/sq/vlore/about" component={VloreAbout} />
-
-                  {/* Shkodër routes */}
-                  <Route path="/sq/shkoder" component={ShkoderIndex} />
-                  <Route path="/sq/shkoder/services" component={ShkoderServices} />
-                  <Route path="/sq/shkoder/portfolio" component={ShkoderPortfolio} />
-                  <Route path="/sq/shkoder/contact" component={ShkoderContact} />
-                  <Route path="/sq/shkoder/about" component={ShkoderAbout} />
-
-                  {/* Elbasan routes */}
-                  <Route path="/sq/elbasan" component={ElbasanIndex} />
-                  <Route path="/sq/elbasan/services" component={ElbasanServices} />
-                  <Route path="/sq/elbasan/portfolio" component={ElbasanPortfolio} />
-                  <Route path="/sq/elbasan/contact" component={ElbasanContact} />
-                  <Route path="/sq/elbasan/about" component={ElbasanAbout} />
-
-                  {/* Fier routes */}
-                  <Route path="/sq/fier" component={FierIndex} />
-                  <Route path="/sq/fier/services" component={FierServices} />
-                  <Route path="/sq/fier/portfolio" component={FierPortfolio} />
-                  <Route path="/sq/fier/contact" component={FierContact} />
-                  <Route path="/sq/fier/about" component={FierAbout} />
-
-                  {/* Korçë routes */}
-                  <Route path="/sq/korce" component={KorceIndex} />
-                  <Route path="/sq/korce/services" component={KorceServices} />
-                  <Route path="/sq/korce/portfolio" component={KorcePortfolio} />
-                  <Route path="/sq/korce/contact" component={KorceContact} />
-                  <Route path="/sq/korce/about" component={KorceAbout} />
 
                   {/* 404 route */}
                   <Route component={NotFound} />
