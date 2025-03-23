@@ -9,7 +9,7 @@ import Navbar from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Suspense, lazy, useEffect, useState } from "react";
 
-// Lazy load pages for better performance
+// Lazy load main pages
 const Home = lazy(() => import("@/pages/home"));
 const Services = lazy(() => import("@/pages/services"));
 const Portfolio = lazy(() => import("@/pages/portfolio"));
@@ -19,15 +19,80 @@ const Terms = lazy(() => import("@/pages/terms"));
 const Pricing = lazy(() => import("@/pages/pricing"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
-// Albanian city pages
-const TiranaPage = lazy(() => import("@/pages/sq/tirane"));
-const DurresPage = lazy(() => import("@/pages/sq/durres"));
-const VloraPage = lazy(() => import("@/pages/sq/vlore"));
-const ShkodraPage = lazy(() => import("@/pages/sq/shkoder"));
-const ElbasanPage = lazy(() => import("@/pages/sq/elbasan"));
-const FierPage = lazy(() => import("@/pages/sq/fier"));
-const KorcePage = lazy(() => import("@/pages/sq/korce"));
-const AlbanianHomePage = lazy(() => import("@/pages/sq/home"));
+// Albanian city pages and their sub-pages
+const cities = [
+  {
+    name: 'tirane',
+    pages: {
+      home: lazy(() => import("@/pages/sq/tirane")),
+      services: lazy(() => import("@/pages/sq/tirane/services")),
+      portfolio: lazy(() => import("@/pages/sq/tirane/portfolio")),
+      contact: lazy(() => import("@/pages/sq/tirane/contact")),
+      about: lazy(() => import("@/pages/sq/tirane/about"))
+    }
+  },
+  {
+    name: 'durres',
+    pages: {
+      home: lazy(() => import("@/pages/sq/durres")),
+      services: lazy(() => import("@/pages/sq/durres/services")),
+      portfolio: lazy(() => import("@/pages/sq/durres/portfolio")),
+      contact: lazy(() => import("@/pages/sq/durres/contact")),
+      about: lazy(() => import("@/pages/sq/durres/about"))
+    }
+  },
+  // Add other cities similarly...
+  {
+    name: 'vlore',
+    pages: {
+      home: lazy(() => import("@/pages/sq/vlore")),
+      services: lazy(() => import("@/pages/sq/vlore/services")),
+      portfolio: lazy(() => import("@/pages/sq/vlore/portfolio")),
+      contact: lazy(() => import("@/pages/sq/vlore/contact")),
+      about: lazy(() => import("@/pages/sq/vlore/about"))
+    }
+  },
+  {
+    name: 'shkoder',
+    pages: {
+      home: lazy(() => import("@/pages/sq/shkoder")),
+      services: lazy(() => import("@/pages/sq/shkoder/services")),
+      portfolio: lazy(() => import("@/pages/sq/shkoder/portfolio")),
+      contact: lazy(() => import("@/pages/sq/shkoder/contact")),
+      about: lazy(() => import("@/pages/sq/shkoder/about"))
+    }
+  },
+  {
+    name: 'elbasan',
+    pages: {
+      home: lazy(() => import("@/pages/sq/elbasan")),
+      services: lazy(() => import("@/pages/sq/elbasan/services")),
+      portfolio: lazy(() => import("@/pages/sq/elbasan/portfolio")),
+      contact: lazy(() => import("@/pages/sq/elbasan/contact")),
+      about: lazy(() => import("@/pages/sq/elbasan/about"))
+    }
+  },
+  {
+    name: 'fier',
+    pages: {
+      home: lazy(() => import("@/pages/sq/fier")),
+      services: lazy(() => import("@/pages/sq/fier/services")),
+      portfolio: lazy(() => import("@/pages/sq/fier/portfolio")),
+      contact: lazy(() => import("@/pages/sq/fier/contact")),
+      about: lazy(() => import("@/pages/sq/fier/about"))
+    }
+  },
+  {
+    name: 'korce',
+    pages: {
+      home: lazy(() => import("@/pages/sq/korce")),
+      services: lazy(() => import("@/pages/sq/korce/services")),
+      portfolio: lazy(() => import("@/pages/sq/korce/portfolio")),
+      contact: lazy(() => import("@/pages/sq/korce/contact")),
+      about: lazy(() => import("@/pages/sq/korce/about"))
+    }
+  }
+];
 
 // Animation variants
 const pageVariants = {
@@ -61,35 +126,15 @@ function Router() {
   const [location] = useLocation();
   const [isLoading, setIsLoading] = useState(false);
 
-  // Scroll to top when route changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  // Simulate loading state on route change
   useEffect(() => {
     setIsLoading(true);
     const timer = setTimeout(() => setIsLoading(false), 800);
     return () => clearTimeout(timer);
   }, [location]);
-
-  // Preload next possible routes
-  useEffect(() => {
-    const preloadRoutes = () => {
-      const routes = ['/services', '/portfolio', '/contact', '/sq/tirane', '/sq/durres', '/sq/vlore'];
-      routes.forEach(route => {
-        const link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.href = route;
-        document.head.appendChild(link);
-      });
-    };
-
-    // Preload after initial page load
-    window.requestIdleCallback 
-      ? window.requestIdleCallback(preloadRoutes) 
-      : setTimeout(preloadRoutes, 1000);
-  }, []);
 
   return (
     <>
@@ -114,15 +159,16 @@ function Router() {
               <Route path="/terms" component={Terms} />
               <Route path="/pricing" component={Pricing} />
 
-              {/* Albanian routes */}
-              <Route path="/sq" component={AlbanianHomePage} />
-              <Route path="/sq/tirane" component={TiranaPage} />
-              <Route path="/sq/durres" component={DurresPage} />
-              <Route path="/sq/vlore" component={VloraPage} />
-              <Route path="/sq/shkoder" component={ShkodraPage} />
-              <Route path="/sq/elbasan" component={ElbasanPage} />
-              <Route path="/sq/fier" component={FierPage} />
-              <Route path="/sq/korce" component={KorcePage} />
+              {/* Albanian city routes */}
+              {cities.map(city => (
+                <>
+                  <Route path={`/sq/${city.name}`} component={city.pages.home} />
+                  <Route path={`/sq/${city.name}/services`} component={city.pages.services} />
+                  <Route path={`/sq/${city.name}/portfolio`} component={city.pages.portfolio} />
+                  <Route path={`/sq/${city.name}/contact`} component={city.pages.contact} />
+                  <Route path={`/sq/${city.name}/about`} component={city.pages.about} />
+                </>
+              ))}
 
               {/* 404 route */}
               <Route component={NotFound} />
@@ -136,8 +182,6 @@ function Router() {
 
 function App() {
   const [location] = useLocation();
-
-  // Determine current language and location based on path
   const language = location.startsWith('/sq') ? 'sq' : location.startsWith('/it') ? 'it' : 'en';
   const cityMatch = location.match(/\/(tirane|durres|vlore|shkoder|elbasan|fier|korce)/);
   const cityName = cityMatch ? cityMatch[1] : undefined;
