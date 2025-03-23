@@ -1,4 +1,4 @@
-import { Switch, Route, useLocation } from "wouter";
+import { Switch, Route, useLocation, Redirect } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
 import { queryClient } from "./lib/queryClient";
@@ -62,7 +62,6 @@ const KorcePortfolio = lazy(() => import("./pages/sq/korce/portfolio"));
 const KorceContact = lazy(() => import("./pages/sq/korce/contact"));
 const KorceAbout = lazy(() => import("./pages/sq/korce/about"));
 
-
 // Animation variants
 const pageVariants = {
   initial: {
@@ -116,6 +115,11 @@ function App() {
             >
               <Suspense fallback={<LoadingTransition isLoading={true} />}>
                 <Switch>
+                  {/* Language redirects */}
+                  <Route path="/sq">
+                    <Redirect to="/sq/tirane" />
+                  </Route>
+
                   {/* Main routes */}
                   <Route path="/" component={Home} />
                   <Route path="/services" component={Services} />
@@ -173,7 +177,6 @@ function App() {
                   <Route path="/sq/korce/portfolio" component={KorcePortfolio} />
                   <Route path="/sq/korce/contact" component={KorceContact} />
                   <Route path="/sq/korce/about" component={KorceAbout} />
-
 
                   {/* 404 route */}
                   <Route component={NotFound} />
