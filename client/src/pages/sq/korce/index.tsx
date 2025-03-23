@@ -96,26 +96,6 @@ const KorcePage: FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Areas Section */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Zonat që Mbulojmë në Korçë</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {['Qendër', 'Barç', 'Kala', 'Piktor', 'Shën Gjergj'].map((area, index) => (
-              <motion.div
-                key={area}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 * index }}
-                className="bg-card p-4 rounded-lg text-center shadow-sm"
-              >
-                {area}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
