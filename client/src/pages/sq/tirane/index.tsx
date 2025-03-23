@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { FaReact, FaNodeJs, FaShopify } from "react-icons/fa";
@@ -32,7 +32,6 @@ const services = [
 const TiranaPage: FC = () => {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <motion.section 
         className="py-20 bg-gradient-to-r from-primary/10 via-primary/5 to-background"
         initial={{ opacity: 0, y: 20 }}
@@ -49,7 +48,7 @@ const TiranaPage: FC = () => {
             Zhvillues Web Profesional në Tiranë
           </motion.h1>
           <motion.p 
-            className="text-xl md:text-2xl text-muted-foreground mb-8"
+            className="text-xl md:text-2xl text-muted-foreground mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -61,18 +60,29 @@ const TiranaPage: FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
+            className="flex flex-wrap gap-4"
           >
             <Link href="/contact">
-              <Button size="lg" className="mr-4">Na Kontaktoni</Button>
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white shadow-lg hover:shadow-xl transition-all duration-300 min-w-[160px] text-base"
+              >
+                Na Kontaktoni
+              </Button>
             </Link>
             <Link href="/portfolio">
-              <Button variant="outline" size="lg">Shiko Punët Tona</Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-2 hover:bg-primary/5 shadow-md hover:shadow-lg transition-all duration-300 min-w-[160px] text-base"
+              >
+                Shiko Punët Tona
+              </Button>
             </Link>
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Services Grid */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">Shërbimet Tona në Tiranë</h2>
@@ -84,7 +94,7 @@ const TiranaPage: FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 * index }}
               >
-                <Card className="h-full">
+                <Card className="h-full hover:shadow-lg transition-shadow duration-300">
                   <CardHeader>
                     <div className="mb-4 text-primary">{service.icon}</div>
                     <CardTitle>{service.title}</CardTitle>
