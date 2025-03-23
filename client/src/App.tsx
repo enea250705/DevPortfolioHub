@@ -19,6 +19,16 @@ const Terms = lazy(() => import("@/pages/terms"));
 const Pricing = lazy(() => import("@/pages/pricing"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
+// Albanian city pages
+const TiranaPage = lazy(() => import("@/pages/sq/tirane"));
+const DurresPage = lazy(() => import("@/pages/sq/durres"));
+const VloraPage = lazy(() => import("@/pages/sq/vlore"));
+const ShkodraPage = lazy(() => import("@/pages/sq/shkoder"));
+const ElbasanPage = lazy(() => import("@/pages/sq/elbasan"));
+const FierPage = lazy(() => import("@/pages/sq/fier"));
+const KorcePage = lazy(() => import("@/pages/sq/korce"));
+const AlbanianHomePage = lazy(() => import("@/pages/sq/home"));
+
 function Router() {
   const [location] = useLocation();
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +48,7 @@ function Router() {
   // Preload next possible routes
   useEffect(() => {
     const preloadRoutes = () => {
-      const routes = ['/services', '/portfolio', '/contact'];
+      const routes = ['/services', '/portfolio', '/contact', '/sq/tirane', '/sq/durres', '/sq/vlore'];
       routes.forEach(route => {
         const link = document.createElement('link');
         link.rel = 'prefetch';
@@ -69,6 +79,7 @@ function Router() {
         >
           <Suspense fallback={<LoadingTransition isLoading={true} />}>
             <Switch>
+              {/* Main routes */}
               <Route path="/" component={Home} />
               <Route path="/services" component={Services} />
               <Route path="/portfolio" component={Portfolio} />
@@ -76,6 +87,18 @@ function Router() {
               <Route path="/privacy" component={Privacy} />
               <Route path="/terms" component={Terms} />
               <Route path="/pricing" component={Pricing} />
+
+              {/* Albanian routes */}
+              <Route path="/sq" component={AlbanianHomePage} />
+              <Route path="/sq/tirane" component={TiranaPage} />
+              <Route path="/sq/durres" component={DurresPage} />
+              <Route path="/sq/vlore" component={VloraPage} />
+              <Route path="/sq/shkoder" component={ShkodraPage} />
+              <Route path="/sq/elbasan" component={ElbasanPage} />
+              <Route path="/sq/fier" component={FierPage} />
+              <Route path="/sq/korce" component={KorcePage} />
+
+              {/* 404 route */}
               <Route component={NotFound} />
             </Switch>
           </Suspense>
