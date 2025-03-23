@@ -29,6 +29,34 @@ const FierPage = lazy(() => import("@/pages/sq/fier"));
 const KorcePage = lazy(() => import("@/pages/sq/korce"));
 const AlbanianHomePage = lazy(() => import("@/pages/sq/home"));
 
+// Animation variants
+const pageVariants = {
+  initial: {
+    opacity: 0,
+    y: 20,
+    scale: 0.98
+  },
+  enter: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.1
+    }
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    scale: 0.98,
+    transition: {
+      duration: 0.3,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
+
 function Router() {
   const [location] = useLocation();
   const [isLoading, setIsLoading] = useState(false);
@@ -69,13 +97,11 @@ function Router() {
       <AnimatePresence mode="wait">
         <motion.div
           key={location}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ 
-            duration: 0.4,
-            ease: [0.22, 1, 0.36, 1]
-          }}
+          initial="initial"
+          animate="enter"
+          exit="exit"
+          variants={pageVariants}
+          className="min-h-screen w-full"
         >
           <Suspense fallback={<LoadingTransition isLoading={true} />}>
             <Switch>
@@ -137,7 +163,7 @@ function App() {
 
 // Helper function to get neighborhoods for each city
 function getCityNeighborhoods(city: string): string[] {
-  const neighborhoods = {
+  const neighborhoods: Record<string, string[]> = {
     tirane: ['Qendër', 'Kombinat', 'Laprakë', 'Kinostudio', 'Selitë'],
     durres: ['Plazh', 'Qendër', 'Currila', 'Kënetë', 'Spitallë'],
     vlore: ['Skelë', 'Uji i Ftohtë', 'Qendër', 'Orikum', 'Radhimë'],
