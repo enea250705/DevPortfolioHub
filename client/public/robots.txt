@@ -12,14 +12,14 @@ Allow: /portfolio
 Allow: /contact
 Allow: /pricing
 
-# Albanian city pages - explicitly allow crawling with high priority
-Allow: /sq/tirane
-Allow: /sq/durres
-Allow: /sq/vlore
-Allow: /sq/shkoder
-Allow: /sq/elbasan
-Allow: /sq/fier
-Allow: /sq/korce
+# Albanian city pages - explicitly allow crawling with maximum priority
+Allow: /sq/tirane$
+Allow: /sq/durres$
+Allow: /sq/vlore$
+Allow: /sq/shkoder$
+Allow: /sq/elbasan$
+Allow: /sq/fier$
+Allow: /sq/korce$
 
 # Sitemaps
 Sitemap: https://codewithenea.it/sitemap-index.xml
@@ -27,11 +27,15 @@ Sitemap: https://codewithenea.it/sitemap.xml
 Sitemap: https://codewithenea.it/sq/sitemap.xml
 Sitemap: https://codewithenea.it/sq/news-sitemap.xml
 
-# Optimize crawling for Albanian pages
+# Special directives for search engines
+User-agent: Googlebot
+Allow: /sq/
 Crawl-delay: 1
 
-# Special directives for Googlebot
-User-agent: Googlebot
-# Prioritize Albanian city pages
+User-agent: Bingbot
+Allow: /sq/
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
 Allow: /sq/
 Crawl-delay: 1

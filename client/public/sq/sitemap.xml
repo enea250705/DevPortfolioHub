@@ -6,7 +6,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://codewithenea.it/sq/tirane</loc>
-    <lastmod>2025-03-21</lastmod>
+    <lastmod>2025-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <mobile:mobile/>
@@ -15,49 +15,52 @@
         <news:name>CodeWithEnea</news:name>
         <news:language>sq</news:language>
       </news:publication>
-      <news:publication_date>2025-03-21</news:publication_date>
+      <news:publication_date>2025-03-23</news:publication_date>
       <news:title>Zhvillues Web Profesional në Tiranë</news:title>
     </news:news>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://codewithenea.it/sq/tirane"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codewithenea.it"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://codewithenea.it/it"/>
   </url>
   <!-- Similar entries for other cities -->
   <url>
     <loc>https://codewithenea.it/sq/durres</loc>
-    <lastmod>2025-03-21</lastmod>
+    <lastmod>2025-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <mobile:mobile/>
   </url>
   <url>
     <loc>https://codewithenea.it/sq/vlore</loc>
-    <lastmod>2025-03-21</lastmod>
+    <lastmod>2025-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <mobile:mobile/>
   </url>
   <url>
     <loc>https://codewithenea.it/sq/shkoder</loc>
-    <lastmod>2025-03-21</lastmod>
+    <lastmod>2025-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <mobile:mobile/>
   </url>
   <url>
     <loc>https://codewithenea.it/sq/elbasan</loc>
-    <lastmod>2025-03-21</lastmod>
+    <lastmod>2025-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <mobile:mobile/>
   </url>
   <url>
     <loc>https://codewithenea.it/sq/fier</loc>
-    <lastmod>2025-03-21</lastmod>
+    <lastmod>2025-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <mobile:mobile/>
   </url>
   <url>
     <loc>https://codewithenea.it/sq/korce</loc>
-    <lastmod>2025-03-21</lastmod>
+    <lastmod>2025-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <mobile:mobile/>
