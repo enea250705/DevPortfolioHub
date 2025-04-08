@@ -18,7 +18,9 @@ const Privacy = lazy(() => import("@/pages/privacy"));
 const Terms = lazy(() => import("@/pages/terms"));
 const Pricing = lazy(() => import("@/pages/pricing"));
 const Blog = lazy(() => import("@/pages/blog"));
-const BlogPost = lazy(() => import("@/pages/blog-post-conversion"));
+// Blog posts - we need conditional loading based on the slug
+const BlogPostInventory = lazy(() => import("@/pages/blog-post-inventory"));
+const BlogPostConversion = lazy(() => import("@/pages/blog-post-conversion"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 // Static imports for city pages
@@ -116,58 +118,245 @@ function App() {
               variants={pageVariants}
               className="min-h-screen w-full"
             >
-              <Suspense fallback={<LoadingTransition isLoading={true} />}>
+              <Suspense fallback={<div className="flex justify-center items-center min-h-[50vh]">
+                <LoadingTransition isLoading={true} />
+              </div>}>
                 <Switch>
                   {/* City-specific routes first */}
-                  <Route path="/sq/tirane" component={TiraneIndex} />
-                  <Route path="/sq/tirane/services" component={TiraneServices} />
-                  <Route path="/sq/tirane/portfolio" component={TiranePortfolio} />
-                  <Route path="/sq/tirane/contact" component={TiraneContact} />
-                  <Route path="/sq/tirane/about" component={TiraneAbout} />
-                  <Route path="/sq/durres" component={DurresIndex} />
-                  <Route path="/sq/durres/services" component={DurresServices} />
-                  <Route path="/sq/durres/portfolio" component={DurresPortfolio} />
-                  <Route path="/sq/durres/contact" component={DurresContact} />
-                  <Route path="/sq/durres/about" component={DurresAbout} />
-                  <Route path="/sq/vlore" component={VloreIndex} />
-                  <Route path="/sq/vlore/services" component={VloreServices} />
-                  <Route path="/sq/vlore/portfolio" component={VlorePortfolio} />
-                  <Route path="/sq/vlore/contact" component={VloreContact} />
-                  <Route path="/sq/vlore/about" component={VloreAbout} />
-                  <Route path="/sq/shkoder" component={ShkoderIndex} />
-                  <Route path="/sq/shkoder/services" component={ShkoderServices} />
-                  <Route path="/sq/shkoder/portfolio" component={ShkoderPortfolio} />
-                  <Route path="/sq/shkoder/contact" component={ShkoderContact} />
-                  <Route path="/sq/shkoder/about" component={ShkoderAbout} />
-                  <Route path="/sq/elbasan" component={ElbasanIndex} />
-                  <Route path="/sq/elbasan/services" component={ElbasanServices} />
-                  <Route path="/sq/elbasan/portfolio" component={ElbasanPortfolio} />
-                  <Route path="/sq/elbasan/contact" component={ElbasanContact} />
-                  <Route path="/sq/elbasan/about" component={ElbasanAbout} />
-                  <Route path="/sq/fier" component={FierIndex} />
-                  <Route path="/sq/fier/services" component={FierServices} />
-                  <Route path="/sq/fier/portfolio" component={FierPortfolio} />
-                  <Route path="/sq/fier/contact" component={FierContact} />
-                  <Route path="/sq/fier/about" component={FierAbout} />
-                  <Route path="/sq/korce" component={KorceIndex} />
-                  <Route path="/sq/korce/services" component={KorceServices} />
-                  <Route path="/sq/korce/portfolio" component={KorcePortfolio} />
-                  <Route path="/sq/korce/contact" component={KorceContact} />
-                  <Route path="/sq/korce/about" component={KorceAbout} />
+                  <Route path="/sq/tirane">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <TiraneIndex />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/tirane/services">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <TiraneServices />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/tirane/portfolio">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <TiranePortfolio />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/tirane/contact">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <TiraneContact />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/tirane/about">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <TiraneAbout />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/durres">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <DurresIndex />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/durres/services">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <DurresServices />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/durres/portfolio">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <DurresPortfolio />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/durres/contact">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <DurresContact />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/durres/about">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <DurresAbout />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/vlore">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <VloreIndex />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/vlore/services">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <VloreServices />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/vlore/portfolio">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <VlorePortfolio />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/vlore/contact">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <VloreContact />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/vlore/about">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <VloreAbout />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/shkoder">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <ShkoderIndex />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/shkoder/services">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <ShkoderServices />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/shkoder/portfolio">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <ShkoderPortfolio />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/shkoder/contact">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <ShkoderContact />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/shkoder/about">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <ShkoderAbout />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/elbasan">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <ElbasanIndex />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/elbasan/services">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <ElbasanServices />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/elbasan/portfolio">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <ElbasanPortfolio />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/elbasan/contact">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <ElbasanContact />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/elbasan/about">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <ElbasanAbout />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/fier">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <FierIndex />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/fier/services">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <FierServices />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/fier/portfolio">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <FierPortfolio />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/fier/contact">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <FierContact />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/fier/about">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <FierAbout />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/korce">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <KorceIndex />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/korce/services">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <KorceServices />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/korce/portfolio">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <KorcePortfolio />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/korce/contact">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <KorceContact />
+                    </Suspense>
+                  </Route>
+                  <Route path="/sq/korce/about">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <KorceAbout />
+                    </Suspense>
+                  </Route>
 
                   {/* Main routes */}
-                  <Route path="/" component={Home} />
-                  <Route path="/services" component={Services} />
-                  <Route path="/portfolio" component={Portfolio} />
-                  <Route path="/contact" component={Contact} />
-                  <Route path="/privacy" component={Privacy} />
-                  <Route path="/terms" component={Terms} />
-                  <Route path="/pricing" component={Pricing} />
-                  <Route path="/blog" component={Blog} />
-                  <Route path="/blog/:slug" component={BlogPost} />
+                  <Route path="/">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <Home />
+                    </Suspense>
+                  </Route>
+                  <Route path="/services">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <Services />
+                    </Suspense>
+                  </Route>
+                  <Route path="/portfolio">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <Portfolio />
+                    </Suspense>
+                  </Route>
+                  <Route path="/contact">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <Contact />
+                    </Suspense>
+                  </Route>
+                  <Route path="/privacy">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <Privacy />
+                    </Suspense>
+                  </Route>
+                  <Route path="/terms">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <Terms />
+                    </Suspense>
+                  </Route>
+                  <Route path="/pricing">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <Pricing />
+                    </Suspense>
+                  </Route>
+                  <Route path="/blog">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <Blog />
+                    </Suspense>
+                  </Route>
+                  <Route path="/blog/improve-inventory-management-custom-web-application">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <BlogPostInventory />
+                    </Suspense>
+                  </Route>
+                  <Route path="/blog/case-study-website-increased-conversions">
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <BlogPostConversion />
+                    </Suspense>
+                  </Route>
 
                   {/* 404 route */}
-                  <Route component={NotFound} />
+                  <Route>
+                    <Suspense fallback={<LoadingTransition isLoading={true} />}>
+                      <NotFound />
+                    </Suspense>
+                  </Route>
                 </Switch>
               </Suspense>
             </motion.div>

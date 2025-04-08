@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, Tag, ArrowLeft } from "lucide-react";
 
-// Blog post data structure (same as in blog.tsx)
+// Blog post data structure
 interface BlogPost {
   id: string;
   title: string;
@@ -29,6 +29,17 @@ const blogPosts: BlogPost[] = [
     tags: ["Inventory Management", "Custom Web Apps", "Business Solutions"],
     imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d",
     slug: "improve-inventory-management-custom-web-application"
+  },
+  {
+    id: "2",
+    title: "Case Study: How a New Website Increased Conversions by 40%",
+    excerpt: "In today's digital-first market, a company's website is often the prime driver of sales and leads. This case study explores how one business transformed their outdated website into a high-converting marketing machine through strategic redesign and optimization.",
+    date: "April 10, 2025",
+    author: "Enea",
+    category: "Case Study",
+    tags: ["Web Design", "Conversion Optimization", "Business Growth"],
+    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+    slug: "case-study-website-increased-conversions"
   }
 ];
 
@@ -106,7 +117,7 @@ const BlogPost: React.FC = () => {
         <div className="prose dark:prose-invert prose-lg max-w-none">
           <h2>Introduction</h2>
           <p>
-            Efficient inventory management can make or break a business. Yet many companies still rely on spreadsheets or manual tracking, leading to errors and lost opportunities. A custom web application tailored to your inventory needs can dramatically improve accuracy, save time, and boost your bottom line. In this article, we'll explore common inventory challenges and how a custom web app can solve them, with features to consider and a step-by-step approach to implementation.
+            Efficient inventory management can make or break a business. Yet many companies still rely on spreadsheets or manual tracking, leading to errors and lost opportunities. A custom web application tailored to your inventory needs can dramatically improve accuracy, save time, and boost your bottom line.
           </p>
           
           <h2>The Challenges of Manual Inventory Management</h2>
@@ -126,33 +137,12 @@ const BlogPost: React.FC = () => {
           
           <h3>Real-World Impact:</h3>
           <p>
-            The consequences of these challenges are significant. Overstocked inventory ties up cash and increases storage costs. Stockouts mean lost sales and unhappy customers. Moreover, employee productivity suffers when too much time is spent firefighting inventory issues instead of focusing on strategic work.
+            These challenges cost real money. Industry estimates suggest businesses typically have 20-30% of their working capital tied up in inventory. Poor management can lead to 3-5% annual inventory shrinkage (lost, damaged, or stolen goods). Meanwhile, stockouts can cause immediate revenue loss and, worse, damage customer relationships – 70-90% of shoppers who encounter an out-of-stock item will take their business elsewhere rather than wait.
           </p>
           
           <h2>Why a Custom Web Application Makes a Difference</h2>
           <p>
-            Generic off-the-shelf inventory software can help, but a custom web application offers distinct advantages by aligning exactly with your business processes:
-          </p>
-          
-          <ul>
-            <li><strong>Tailored to Your Workflow:</strong> Every business has unique rules (e.g., how you categorize products, handle returns, or trigger reorders). A custom app is built around your rules and language, not generic ones. This means employees adapt faster and fewer workarounds are needed.</li>
-            
-            <li><strong>Real-Time Tracking and Alerts:</strong> A web app connected to your databases and systems can update stock levels instantly as sales or shipments occur. You get a live dashboard of inventory. Managers can see at a glance what needs restocking. You can also set automatic alerts – e.g., when an item's quantity drops below a threshold, the system emails or texts a reorder alert.</li>
-            
-            <li><strong>Reduction in Errors:</strong> Automation means less manual data entry. Scanning barcodes or RFID with a web-based system updates counts without typing. Fewer typos and omissions translate to higher accuracy. With validation rules in a custom app (preventing negative stock entries, flagging unusual spikes, etc.), you catch issues early.</li>
-            
-            <li><strong>Integration with Other Systems:</strong> A custom application can be built to integrate seamlessly with your existing software – whether it's your ERP, accounting system, or online store. This means, for example, when a customer places an order online, the inventory app immediately deducts the item and updates financial records.</li>
-            
-            <li><strong>Analytics and Forecasting:</strong> Beyond tracking current stock, a custom solution can analyze sales patterns and seasonality for your specific business. It can generate forecasts or suggest optimal reorder points based on your data.</li>
-            
-            <li><strong>Scalability and Flexibility:</strong> As your business grows or changes, a custom app can grow with you. You can add new features, new product categories, or even support new locations without being limited by a vendor's roadmap.</li>
-            
-            <li><strong>Improved Performance and Revenue:</strong> The bottom-line benefits are compelling. By preventing stockouts and optimizing stock levels, you can capture more sales with less inventory. Streamlining inventory not only cuts waste but also improves customer satisfaction (they get what they want, when they want it).</li>
-          </ul>
-          
-          <h2>Key Features to Include in a Custom Inventory App</h2>
-          <p>
-            If you decide to build a custom web app for inventory, consider implementing these core features to maximize its impact:
+            While there are many off-the-shelf inventory solutions, a custom web application offers specific advantages. It can be built around your workflow, not vice versa. It can integrate perfectly with your existing systems. And it can scale from straightforward tracking to sophisticated forecasting as your needs evolve.
           </p>
           
           <ul>
