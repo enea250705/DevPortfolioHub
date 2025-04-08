@@ -30,6 +30,17 @@ const blogPosts: BlogPost[] = [
     tags: ["Inventory Management", "Custom Web Apps", "Business Solutions"],
     imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d",
     slug: "improve-inventory-management-custom-web-application"
+  },
+  {
+    id: "2",
+    title: "Case Study: How a New Website Increased Conversions by 40%",
+    excerpt: "In today's digital-first market, a company's website is often the prime driver of sales and leads. This case study explores how one business transformed their outdated website into a high-converting marketing machine through strategic redesign and optimization.",
+    date: "April 10, 2025",
+    author: "Enea",
+    category: "Case Study",
+    tags: ["Web Design", "Conversion Optimization", "Business Growth"],
+    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+    slug: "case-study-website-increased-conversions"
   }
 ];
 
