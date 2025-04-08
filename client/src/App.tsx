@@ -18,7 +18,7 @@ const Privacy = lazy(() => import("@/pages/privacy"));
 const Terms = lazy(() => import("@/pages/terms"));
 const Pricing = lazy(() => import("@/pages/pricing"));
 const Blog = lazy(() => import("@/pages/blog"));
-const BlogPost = lazy(() => import("@/pages/blog-post-fixed"));
+const BlogPost = lazy(() => import("@/pages/blog-post-complete"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 // Static imports for city pages
