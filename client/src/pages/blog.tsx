@@ -22,47 +22,14 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
-    title: "Modern Web Development Trends in 2023",
-    excerpt: "Explore the latest trends in web development including serverless architecture, JAMstack, and headless CMS solutions.",
-    date: "June 15, 2023",
+    title: "How to Improve Inventory Management With a Custom Web Application",
+    excerpt: "Efficient inventory management can make or break a business. Yet many companies still rely on spreadsheets or manual tracking, leading to errors and lost opportunities. A custom web application tailored to your inventory needs can dramatically improve accuracy, save time, and boost your bottom line.",
+    date: "April 8, 2025",
     author: "Enea Jahollari",
     category: "Web Development",
-    tags: ["JavaScript", "React", "NextJS"],
-    imageUrl: "https://images.unsplash.com/photo-1581276879432-15e50529f34b",
-    slug: "modern-web-development-trends-2023"
-  },
-  {
-    id: "2",
-    title: "Optimizing Website Performance",
-    excerpt: "Learn techniques to improve website loading speed, reduce bundle size, and enhance user experience through performance optimization.",
-    date: "July 12, 2023",
-    author: "Enea Jahollari",
-    category: "Performance",
-    tags: ["Optimization", "SEO", "Core Web Vitals"],
-    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-    slug: "optimizing-website-performance"
-  },
-  {
-    id: "3",
-    title: "The Importance of SEO for Local Businesses",
-    excerpt: "Discover why local SEO is crucial for businesses in Albania and how to improve your local search rankings.",
-    date: "August 5, 2023",
-    author: "Enea Jahollari",
-    category: "SEO",
-    tags: ["Local SEO", "Google Business", "Rankings"],
-    imageUrl: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1",
-    slug: "importance-of-seo-local-businesses"
-  },
-  {
-    id: "4",
-    title: "Building Responsive Layouts with Flexbox and Grid",
-    excerpt: "A comprehensive guide to creating modern, responsive layouts using CSS Flexbox and Grid layout systems.",
-    date: "September 20, 2023",
-    author: "Enea Jahollari",
-    category: "CSS",
-    tags: ["Flexbox", "CSS Grid", "Responsive Design"],
-    imageUrl: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8",
-    slug: "responsive-layouts-flexbox-grid"
+    tags: ["Inventory Management", "Custom Web Apps", "Business Solutions"],
+    imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d",
+    slug: "improve-inventory-management-custom-web-application"
   }
 ];
 
