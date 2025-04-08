@@ -17,6 +17,8 @@ const Contact = lazy(() => import("@/pages/contact"));
 const Privacy = lazy(() => import("@/pages/privacy"));
 const Terms = lazy(() => import("@/pages/terms"));
 const Pricing = lazy(() => import("@/pages/pricing"));
+const Blog = lazy(() => import("@/pages/blog"));
+const BlogPost = lazy(() => import("@/pages/blog-post"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 // Static imports for city pages
@@ -161,6 +163,8 @@ function App() {
                   <Route path="/privacy" component={Privacy} />
                   <Route path="/terms" component={Terms} />
                   <Route path="/pricing" component={Pricing} />
+                  <Route path="/blog" component={Blog} />
+                  <Route path="/blog/:slug" component={BlogPost} />
 
                   {/* 404 route */}
                   <Route component={NotFound} />
