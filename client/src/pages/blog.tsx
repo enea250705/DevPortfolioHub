@@ -25,7 +25,7 @@ const blogPosts: BlogPost[] = [
     title: "How to Improve Inventory Management With a Custom Web Application",
     excerpt: "Efficient inventory management can make or break a business. Yet many companies still rely on spreadsheets or manual tracking, leading to errors and lost opportunities. A custom web application tailored to your inventory needs can dramatically improve accuracy, save time, and boost your bottom line.",
     date: "April 8, 2025",
-    author: "Enea Jahollari",
+    author: "Enea",
     category: "Web Development",
     tags: ["Inventory Management", "Custom Web Apps", "Business Solutions"],
     imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d",
