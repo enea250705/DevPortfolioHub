@@ -1,0 +1,6 @@
+module.exports = {
+  rewrites: [
+    { source: '/api/:path*', destination: '/server/index.ts' },
+    { source: '/:path*', destination: '/index.html' }
+  ]
+}; 
