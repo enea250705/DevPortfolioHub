@@ -71,27 +71,18 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  // Serve static files from the dist/public directory
-  log("Serving static files from dist/public");
-  app.use(express.static(path.resolve(process.cwd(), "dist/public")));
+  const distPath = path.resolve(__dirname, "public");
 
-  // All other routes should serve the index.html for client-side routing
-  app.get("*", (req, res, next) => {
-    log(`Handling route: ${req.path}`);
-    if (req.path.startsWith("/api")) {
-      log(`API route: ${req.path}, skipping index.html fallback`);
-      return next();
-    }
-    
-    const indexPath = path.resolve(process.cwd(), "dist/public/index.html");
-    log(`Serving index.html for client route: ${req.path}`);
-    
-    // Check if index.html exists
-    if (fs.existsSync(indexPath)) {
-      res.sendFile(indexPath);
-    } else {
-      log(`ERROR: index.html not found at ${indexPath}`);
-      res.status(404).send("Not found: index.html is missing");
-    }
+  if (!fs.existsSync(distPath)) {
+    throw new Error(
+      `Could not find the build directory: ${distPath}, make sure to build the client first`,
+    );
+  }
+
+  app.use(express.static(distPath));
+
+  // fall through to index.html if the file doesn't exist
+  app.use("*", (_req, res) => {
+    res.sendFile(path.resolve(distPath, "index.html"));
   });
 }

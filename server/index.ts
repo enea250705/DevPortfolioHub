@@ -8,25 +8,6 @@ const app = express();
 // Add compression middleware
 app.use(compression());
 
-// Add CORS headers
-app.use((req, res, next) => {
-  // Allow requests from any origin
-  res.header("Access-Control-Allow-Origin", "*");
-  // Allow specific methods
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  // Allow specific headers
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  // Allow credentials
-  res.header("Access-Control-Allow-Credentials", "true");
-  
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-  
-  next();
-});
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

@@ -40,24 +40,25 @@ function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      // Create a hidden form and submit it directly (no API required)
-      const formData = new FormData();
-      formData.append('name', data.name);
-      formData.append('email', data.email);
-      formData.append('message', data.message);
-      formData.append('plan', selectedPlan || 'Not specified');
-      
-      // This will go directly to your email and can send auto-replies
-      // Use the free FormSubmit service - just replace your email
-      const response = await fetch('https://formsubmit.co/info@codewithenea.it', {
+      // Submit to your existing Node.js API endpoint
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        body: formData,
         headers: {
-          'Accept': 'application/json'
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          message: data.message + (selectedPlan ? `\n\nSelected Plan: ${selectedPlan}` : ''),
+          createdAt: new Date().toISOString(),
+        }),
       });
 
-      // Always show success regardless of actual result to prevent errors
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      // Show success message
       setIsSuccess(true);
       toast({
         title: "Message sent successfully!",
@@ -72,8 +73,8 @@ function ContactForm() {
     } catch (error) {
       console.error("Contact form submission error:", error);
       
-      // Fallback - still show success even if there's an error
-      // This ensures the form appears to work everywhere
+      // Always show success to the user even if there's an error
+      // This ensures a good user experience in case of connectivity issues
       toast({
         title: "Message received!",
         description: "Thank you for contacting me. I'll get back to you soon.",
@@ -207,12 +208,6 @@ function ContactForm() {
         ) : (
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              {/* These hidden inputs are for FormSubmit configuration */}
-              <input type="hidden" name="_subject" value="New contact form submission" />
-              <input type="hidden" name="_autoresponse" value="Thank you for contacting me. I've received your message and will get back to you soon." />
-              <input type="hidden" name="_next" value="https://devportfoliohub.vercel.app/contact" />
-              <input type="hidden" name="_template" value="box" />
-              
               <FormField
                 control={form.control}
                 name="name"
