@@ -38,7 +38,17 @@ export default function Contact() {
 
   const mutation = useMutation({
     mutationFn: async (data: ContactMessage) => {
-      const res = await apiRequest("POST", "/api/contact", data);
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Failed to send message");
+      }
+      
       return res.json();
     },
     onSuccess: () => {
