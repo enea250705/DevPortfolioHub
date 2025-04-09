@@ -19,12 +19,12 @@
       "dest": "server/index.ts"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
+      "src": "/(.*\\.(js|json|css|ico|png|jpg|jpeg|svg|webp|gif))",
+      "dest": "dist/public/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "dist/public/index.html"
     }
   ]
 } 
