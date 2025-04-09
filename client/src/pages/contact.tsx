@@ -38,10 +38,18 @@ export default function Contact() {
 
   const mutation = useMutation({
     mutationFn: async (data: ContactMessage) => {
-      const res = await apiRequest("POST", "/api/contact", data);
-      return res.json();
+      console.log("Submitting contact form:", data);
+      try {
+        const res = await apiRequest("POST", "/api/contact", data);
+        console.log("Contact form submission response:", res.status);
+        return res.json();
+      } catch (error) {
+        console.error("Contact form submission error:", error);
+        throw error;
+      }
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log("Contact form submission success:", data);
       toast({
         title: "Message sent!",
         description: "Thank you for contacting me. I'll get back to you soon.",
@@ -49,6 +57,7 @@ export default function Contact() {
       form.reset();
     },
     onError: (error) => {
+      console.error("Contact form mutation error:", error);
       toast({
         variant: "destructive",
         title: "Error",
@@ -58,6 +67,7 @@ export default function Contact() {
   });
 
   const onSubmit = (data: ContactMessage) => {
+    console.log("Form submitted with data:", data);
     mutation.mutate(data);
   };
 
