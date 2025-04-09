@@ -27,8 +27,8 @@ export default function App() {
             <Route path="/portfolio" component={Portfolio} />
             <Route path="/services" component={Services} />
             <Route path="/blog" component={Blog} />
-            <Route path="/blog/inventory-system" component={BlogPostInventory} />
-            <Route path="/blog/conversion-optimization" component={BlogPostConversion} />
+            <Route path="/blog/improve-inventory-management-custom-web-application" component={BlogPostInventory} />
+            <Route path="/blog/case-study-website-increased-conversions" component={BlogPostConversion} />
             <Route path="/blog/complete-website-redesign" component={BlogPostComplete} />
             <Route path="/blog/:slug" component={BlogPost} />
             <Route path="/privacy" component={Privacy} />
