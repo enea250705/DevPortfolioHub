@@ -44,7 +44,7 @@ function ContactForm() {
     
     script.onload = () => {
       // Initialize EmailJS with your user ID
-      window.emailjs?.init("YOUR_EMAILJS_USER_ID");
+      window.emailjs?.init("9AowZHld3jYv6HZOx");
     };
     
     return () => {
@@ -75,7 +75,7 @@ function ContactForm() {
       // 2. An automatic thank you email to the user
       if (window.emailjs) {
         await window.emailjs.send(
-          "YOUR_EMAILJS_SERVICE_ID", // Create a service on EmailJS (Gmail, Outlook, etc)
+          "service_ics6mwd", // Your EmailJS service ID
           "YOUR_EMAILJS_TEMPLATE_ID", // Create a template for admin notifications
           {
             name: data.name,
@@ -88,7 +88,7 @@ function ContactForm() {
         
         // Send auto-reply thank you email to user
         await window.emailjs.send(
-          "YOUR_EMAILJS_SERVICE_ID",
+          "service_ics6mwd", // Your EmailJS service ID
           "YOUR_EMAILJS_TEMPLATE_ID_AUTOREPLY", // Create a template for user auto-replies
           {
             to_name: data.name,
