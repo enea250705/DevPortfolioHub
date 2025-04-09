@@ -11,9 +11,14 @@ export async function registerRoutes(app: Express) {
       const data = contactMessageSchema.parse(req.body);
       const message = await storage.createContactMessage(data);
 
+      // Log the submission attempt
+      console.log("Contact form submission received:", message);
+
       // Send email notification
       try {
+        console.log("Attempting to send email...");
         await sendContactEmail(message);
+        console.log("Email sent successfully");
       } catch (emailError) {
         console.error("Failed to send email:", emailError);
         // Continue with the response even if email fails
@@ -21,6 +26,7 @@ export async function registerRoutes(app: Express) {
 
       res.status(201).json(message);
     } catch (error) {
+      console.error("Contact form validation error:", error);
       if (error instanceof Error) {
         res.status(400).json({ message: error.message });
       } else {

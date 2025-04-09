@@ -40,23 +40,25 @@ function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      // Submit to your existing Node.js API endpoint
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          message: data.message + (selectedPlan ? `\n\nSelected Plan: ${selectedPlan}` : ''),
-          createdAt: new Date().toISOString(),
-        }),
-      });
+      // Use EmailJS to send the email directly from the client
+      // IMPORTANT: You need to:
+      // 1. Create an account at emailjs.com
+      // 2. Set up an email service (Gmail, Outlook, etc.)
+      // 3. Create an email template with variables: {{name}}, {{email}}, {{message}}
+      // 4. Replace the IDs below with your actual EmailJS Service ID and Template ID
+      const templateParams = {
+        name: data.name,
+        email: data.email,
+        message: data.message + (selectedPlan ? `\n\nSelected Plan: ${selectedPlan}` : ''),
+        to_email: "info@codewithenea.it"
+      };
 
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
+      // Use the global emailjs object from the script we added to index.html
+      await (window as any).emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your actual EmailJS Service ID from dashboard
+        'YOUR_TEMPLATE_ID', // Replace with your actual EmailJS Template ID from dashboard
+        templateParams
+      );
 
       // Show success message
       setIsSuccess(true);
@@ -73,19 +75,12 @@ function ContactForm() {
     } catch (error) {
       console.error("Contact form submission error:", error);
       
-      // Always show success to the user even if there's an error
-      // This ensures a good user experience in case of connectivity issues
+      // Show error to the user
       toast({
-        title: "Message received!",
-        description: "Thank you for contacting me. I'll get back to you soon.",
+        title: "Something went wrong",
+        description: "Please try again or contact us directly via email.",
+        variant: "destructive"
       });
-      form.reset();
-      setIsSuccess(true);
-      
-      // Reset success state after 5 seconds
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 5000);
     } finally {
       setIsSubmitting(false);
     }
