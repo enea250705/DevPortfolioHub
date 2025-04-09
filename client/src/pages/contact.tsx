@@ -41,11 +41,6 @@ function ContactForm() {
 
     try {
       // Use EmailJS to send the email directly from the client
-      // IMPORTANT: You need to:
-      // 1. Create an account at emailjs.com
-      // 2. Set up an email service (Gmail, Outlook, etc.)
-      // 3. Create an email template with variables: {{name}}, {{email}}, {{message}}
-      // 4. Replace the IDs below with your actual EmailJS Service ID and Template ID
       const templateParams = {
         name: data.name,
         email: data.email,
@@ -53,10 +48,17 @@ function ContactForm() {
         to_email: "info@codewithenea.it"
       };
 
-      // Use the global emailjs object from the script we added to index.html
+      // Send notification email to admin using the admin template
       await (window as any).emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your actual EmailJS Service ID from dashboard
-        'YOUR_TEMPLATE_ID', // Replace with your actual EmailJS Template ID from dashboard
+        'service_ics6mwd',
+        'template_558hej9',
+        templateParams
+      );
+
+      // Send auto-reply email to the customer
+      await (window as any).emailjs.send(
+        'service_ics6mwd',
+        'template_vuiys3f',
         templateParams
       );
 
