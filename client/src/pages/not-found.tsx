@@ -1,21 +1,28 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Link, useLocation } from "wouter";
 import { AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 export default function NotFound() {
-  return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md mx-4">
-        <CardContent className="pt-6">
-          <div className="flex mb-4 gap-2">
-            <AlertCircle className="h-8 w-8 text-red-500" />
-            <h1 className="text-2xl font-bold text-gray-900">404 Page Not Found</h1>
-          </div>
+  const [location] = useLocation();
+  
+  useEffect(() => {
+    console.log("Not Found page rendered for path:", location);
+  }, [location]);
 
-          <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
-          </p>
-        </CardContent>
-      </Card>
+  return (
+    <div className="flex flex-col items-center justify-center py-20 text-center">
+      <AlertCircle className="h-20 w-20 text-destructive mb-6 animate-pulse" />
+      <h1 className="text-4xl font-bold tracking-tight mb-2">Page Not Found</h1>
+      <p className="text-xl text-muted-foreground mb-6">
+        Current path: <code className="bg-muted px-2 py-1 rounded">{location}</code>
+      </p>
+      <p className="text-muted-foreground mb-8">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <Button size="lg" asChild>
+        <Link href="/">Go Back Home</Link>
+      </Button>
     </div>
   );
 }
