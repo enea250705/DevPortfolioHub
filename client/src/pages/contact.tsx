@@ -2,24 +2,16 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { z } from "zod";
+import { contactMessageSchema, type ContactMessage } from "@shared/schema";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
-
-// Define schema locally to avoid import issues
-const contactMessageSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters long"),
-});
-
-type ContactMessage = z.infer<typeof contactMessageSchema>;
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -46,17 +38,7 @@ export default function Contact() {
 
   const mutation = useMutation({
     mutationFn: async (data: ContactMessage) => {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-      
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Failed to send message");
-      }
-      
+      const res = await apiRequest("POST", "/api/contact", data);
       return res.json();
     },
     onSuccess: () => {
