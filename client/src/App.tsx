@@ -1,5 +1,5 @@
-import { Navigate } from "wouter";
+import { Redirect } from "wouter";
 
 export default function App() {
-  return <Navigate to="/" />;
+  return <Redirect to="/" />;
 }
