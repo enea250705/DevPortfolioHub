@@ -27,23 +27,6 @@ const fadeInUp = {
   transition: { duration: 0.5 }
 };
 
-// Add EmailJS script to the page
-useEffect(() => {
-  const script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
-  script.async = true;
-  document.body.appendChild(script);
-  
-  script.onload = () => {
-    // Initialize EmailJS with your user ID
-    window.emailjs?.init("YOUR_EMAILJS_USER_ID");
-  };
-  
-  return () => {
-    document.body.removeChild(script);
-  };
-}, []);
-
 function ContactForm() {
   const { toast } = useToast();
   const [location] = useLocation();
@@ -51,6 +34,25 @@ function ContactForm() {
   const selectedPlan = searchParams.get('plan');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  
+  // Add EmailJS script dynamically - moved inside component
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    script.onload = () => {
+      // Initialize EmailJS with your user ID
+      window.emailjs?.init("YOUR_EMAILJS_USER_ID");
+    };
+    
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
 
   const form = useForm<ContactMessage>({
     resolver: zodResolver(contactMessageSchema),
