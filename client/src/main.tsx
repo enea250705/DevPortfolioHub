@@ -1,8 +1,6 @@
 import { createRoot } from "react-dom/client";
-import { useEffect } from "react";
 import App from "./App";
 import "./index.css";
-import { Router } from "wouter";
 
 // Check if there's a redirect stored in session storage (from 404 page)
 const storedRedirect = sessionStorage.getItem('redirect');
@@ -14,8 +12,4 @@ if (storedRedirect) {
 }
 
 // Render the app
-createRoot(document.getElementById("root")!).render(
-  <Router>
-    <App />
-  </Router>
-);
+createRoot(document.getElementById("root")!).render(<App />);
