@@ -55,34 +55,40 @@ export function PricingComparison() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {pricingTiers.map((tier) => (
-        <Card key={tier.name} className="p-6">
-          <h3 className="text-2xl font-bold">{tier.name}</h3>
-          <div className="mt-4">
-            <div className="text-3xl font-bold">${tier.price}</div>
-            <div className="text-sm text-muted-foreground mt-1">
-              50% upfront (${tier.price / 2})<br />
-              50% upon completion (${tier.price / 2})
+        <Card key={tier.name} className="p-6 flex flex-col h-full">
+          <div className="mb-6">
+            <h3 className="text-2xl font-bold">{tier.name}</h3>
+            <div className="mt-4">
+              <div className="text-3xl font-bold">${tier.price}</div>
+              <div className="text-sm text-muted-foreground mt-1">
+                50% upfront (${tier.price / 2})<br />
+                50% upon completion (${tier.price / 2})
+              </div>
             </div>
+            <p className="mt-2 text-muted-foreground">{tier.description}</p>
           </div>
-          <p className="mt-2 text-muted-foreground">{tier.description}</p>
-          <ul className="mt-6 space-y-4">
+          
+          <ul className="mt-2 mb-6 space-y-4 flex-grow">
             {tier.features.map((feature, index) => (
               <li key={feature} className="flex items-center gap-2">
                 {tier.included[index] ? (
-                  <CheckCircle2 className="h-5 w-5 text-green-500" />
+                  <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
                 ) : (
-                  <XCircle className="h-5 w-5 text-red-500" />
+                  <XCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
                 )}
-                {feature}
+                <span>{feature}</span>
               </li>
             ))}
           </ul>
-          <Button asChild className="w-full mt-6">
-            <Link href={`/contact?plan=${tier.name}`}>Start Your Project</Link>
-          </Button>
-          <p className="text-sm text-muted-foreground text-center mt-4">
-            Secure 50/50 payment plan available
-          </p>
+          
+          <div className="mt-auto">
+            <Button asChild className="w-full">
+              <Link href={`/contact?plan=${tier.name}`}>Start Your Project</Link>
+            </Button>
+            <p className="text-sm text-muted-foreground text-center mt-4">
+              Secure 50/50 payment plan available
+            </p>
+          </div>
         </Card>
       ))}
     </div>
