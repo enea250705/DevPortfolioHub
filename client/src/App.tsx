@@ -10,6 +10,7 @@ import Terms from "./pages/terms";
 import Pricing from "./pages/pricing";
 import Navbar from "./components/navbar";
 import { Footer } from "./components/footer";
+import { Toaster } from "./components/ui/toaster";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
         </Switch>
       </main>
       <Footer />
+      <Toaster />
     </div>
   );
 }
