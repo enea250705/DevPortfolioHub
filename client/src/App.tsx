@@ -1,4 +1,5 @@
-import { Route, Switch, Router } from "wouter";
+import { Route, Switch, Router, useLocation } from "wouter";
+import { useEffect } from "react";
 import Home from "./pages/home";
 import Contact from "./pages/contact";
 import Portfolio from "./pages/portfolio";
@@ -15,10 +16,22 @@ import Pricing from "./pages/pricing";
 import Navbar from "./components/navbar";
 import { Footer } from "./components/footer";
 
+// Component to handle scrolling to top on route change
+function ScrollToTop() {
+  const [location] = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  
+  return null;
+}
+
 export default function App() {
   return (
     <Router base="/">
       <div className="flex flex-col min-h-screen">
+        <ScrollToTop />
         <Navbar />
         <main className="flex-1 container mx-auto px-4 py-8">
           <Switch>
