@@ -360,14 +360,18 @@ export function SEO({
     const allKeywords = [...baseKeywords, ...keywords].join(', ');
     metaKeywords.setAttribute('content', allKeywords);
 
-    // Update canonical URL
-    let canonicalUrl = document.querySelector('link[rel="canonical"]');
-    if (!canonicalUrl) {
-      canonicalUrl = document.createElement('link');
-      canonicalUrl.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonicalUrl);
-    }
-    canonicalUrl.setAttribute('href', `https://codewithenea.it${currentPath}`);
+    // Update canonical URL - ensure it always points to the current page
+    // Remove any existing canonical tags first to avoid duplicates
+    const existingCanonicals = document.querySelectorAll('link[rel="canonical"]');
+    existingCanonicals.forEach(canonical => canonical.remove());
+    
+    // Create new canonical tag pointing to current page
+    const canonicalUrl = document.createElement('link');
+    canonicalUrl.setAttribute('rel', 'canonical');
+    // Ensure currentPath doesn't have trailing slash unless it's root
+    const cleanPath = currentPath === '/' ? '' : currentPath.replace(/\/$/, '');
+    canonicalUrl.setAttribute('href', `https://codewithenea.it${cleanPath}`);
+    document.head.appendChild(canonicalUrl);
 
     // Add breadcrumb schema
     let scriptTag = document.querySelector('#breadcrumb-schema');
