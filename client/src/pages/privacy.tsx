@@ -1,8 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { PageBreadcrumb } from "@/components/page-breadcrumb";
 
 export default function Privacy() {
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <>
+      <PageBreadcrumb />
+      <div className="max-w-4xl mx-auto space-y-8">
       <h1 className="text-4xl font-bold">Privacy Policy</h1>
       <p className="text-muted-foreground">Last updated: March 15, 2025</p>
 
@@ -55,5 +58,6 @@ export default function Privacy() {
         </CardContent>
       </Card>
     </div>
+    </>
   );
 }

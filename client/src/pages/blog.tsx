@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, User, Tag } from "lucide-react";
+import { PageBreadcrumb } from "@/components/page-breadcrumb";
 
 // Blog post data structure
 interface BlogPost {
@@ -46,7 +47,9 @@ const blogPosts: BlogPost[] = [
 
 const BlogPage: React.FC = () => {
   return (
-    <div className="space-y-8 py-8">
+    <>
+      <PageBreadcrumb />
+      <div className="space-y-8 py-8">
       <div className="text-center space-y-4">
         <motion.h1 
           className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70"
@@ -132,6 +135,7 @@ const BlogPage: React.FC = () => {
         ))}
       </motion.div>
     </div>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import { useLocation, Link } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, Tag, ArrowLeft } from "lucide-react";
+import { PageBreadcrumb } from "@/components/page-breadcrumb";
 
 // Blog post data structure
 interface BlogPost {
@@ -67,6 +68,7 @@ const BlogPost: React.FC = () => {
   
   return (
     <div className="space-y-8 py-8 max-w-4xl mx-auto">
+      <PageBreadcrumb />
       <div className="mb-8">
         <Button variant="ghost" size="sm" asChild className="mb-4">
           <Link href="/blog">

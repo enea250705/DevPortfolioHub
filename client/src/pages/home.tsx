@@ -6,6 +6,7 @@ import { SkillsSection } from "@/components/skills-section";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { SEO } from "@/components/seo";
+import { PageBreadcrumb } from "@/components/page-breadcrumb";
 
 const quotes = [
   {
@@ -64,6 +65,7 @@ export default function Home() {
         neighborhoods={["Centro Storico", "Sant'Agabio", "San Martino", "Veveri", "Bicocca"]}
         geoCoordinates={{ latitude: 45.4455, longitude: 8.6190 }}
       />
+      <PageBreadcrumb />
       <div className="space-y-24">
       {/* Hero Section with Parallax */}
       <motion.section

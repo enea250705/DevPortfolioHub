@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { SEO } from "@/components/seo";
+import { PageBreadcrumb } from "@/components/page-breadcrumb";
 import { MapPin } from "lucide-react";
 
 const cities = [
@@ -120,6 +121,7 @@ const LocationsPage: FC = () => {
         location="Italia"
         language="it"
       />
+      <PageBreadcrumb />
       <div className="min-h-screen py-12">
         <div className="container mx-auto px-4">
           <motion.div

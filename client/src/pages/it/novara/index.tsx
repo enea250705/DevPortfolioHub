@@ -6,6 +6,7 @@ import { Link } from "wouter";
 import { FaReact, FaNodeJs, FaShopify } from "react-icons/fa";
 import { SiTypescript, SiNextdotjs } from "react-icons/si";
 import { SEO } from "@/components/seo";
+import { PageBreadcrumb } from "@/components/page-breadcrumb";
 import { CheckCircle2, Code, Globe, ShoppingCart, Database, Zap } from "lucide-react";
 
 const services = [
@@ -122,6 +123,7 @@ const NovaraPage: FC = () => {
           }
         ]}
       />
+      <PageBreadcrumb />
       <div className="min-h-screen">
         <motion.section 
           className="relative py-24 overflow-hidden"

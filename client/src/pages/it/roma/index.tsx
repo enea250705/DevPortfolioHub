@@ -6,6 +6,7 @@ import { Link } from "wouter";
 import { FaReact, FaNodeJs, FaShopify } from "react-icons/fa";
 import { SiTypescript, SiNextdotjs } from "react-icons/si";
 import { SEO } from "@/components/seo";
+import { PageBreadcrumb } from "@/components/page-breadcrumb";
 
 const services = [
   {
@@ -87,6 +88,7 @@ const RomaPage: FC = () => {
         ]}
         aggregateRating={{ ratingValue: 4.8, reviewCount: 89 }}
       />
+      <PageBreadcrumb />
       <div className="min-h-screen">
         <motion.section 
           className="relative py-24 overflow-hidden"

@@ -11,6 +11,7 @@ import { Mail, Phone, MapPin, Instagram, Linkedin, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
 import { SEO } from "@/components/seo";
+import { PageBreadcrumb } from "@/components/page-breadcrumb";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -322,6 +323,7 @@ export default function Contact() {
         location="Novara, Italy"
         language="en"
       />
+      <PageBreadcrumb />
       <ContactForm />
     </>
   );

@@ -1,5 +1,6 @@
 import { ProjectCard } from "@/components/project-card";
 import { SEO } from "@/components/seo";
+import { PageBreadcrumb } from "@/components/page-breadcrumb";
 
 const projects = [
   {
@@ -42,6 +43,7 @@ export default function Portfolio() {
         location="Novara, Italy"
         language="en"
       />
+      <PageBreadcrumb />
       <div className="space-y-12">
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold">Portfolio</h1>

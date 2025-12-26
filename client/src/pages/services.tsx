@@ -1,6 +1,7 @@
 import { ServiceCard } from "@/components/service-card";
 import { Code, Layout, Database, Layers, Server } from "lucide-react";
 import { SEO } from "@/components/seo";
+import { PageBreadcrumb } from "@/components/page-breadcrumb";
 
 const services = [
   {
@@ -39,6 +40,7 @@ export default function Services() {
         location="Novara, Italy"
         language="en"
       />
+      <PageBreadcrumb />
       <div className="space-y-8">
       <div id="services" className="text-center space-y-4">
         <h1 className="text-4xl font-bold">Our Services</h1>

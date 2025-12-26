@@ -56,6 +56,7 @@ const BlogPost: React.FC = () => {
   
   return (
     <div className="space-y-8 py-8 max-w-4xl mx-auto">
+      <PageBreadcrumb />
       <div className="mb-8">
         <Button variant="ghost" size="sm" asChild className="mb-4">
           <Link href="/blog">
