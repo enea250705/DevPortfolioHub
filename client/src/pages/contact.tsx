@@ -42,6 +42,19 @@ function ContactForm() {
     setIsSubmitting(true);
 
     try {
+      // Wait for EmailJS to be available
+      let emailjs = (window as any).emailjs;
+      
+      // If not immediately available, wait a bit
+      if (!emailjs) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        emailjs = (window as any).emailjs;
+      }
+      
+      if (!emailjs || !emailjs.send) {
+        throw new Error("EmailJS is not loaded. Please refresh the page and try again.");
+      }
+
       // Use EmailJS to send the email directly from the client
       const templateParams = {
         name: data.name,
@@ -51,14 +64,14 @@ function ContactForm() {
       };
 
       // Send notification email to admin using the admin template
-      await (window as any).emailjs.send(
+      await emailjs.send(
         'service_ics6mwd',
         'template_558hej9',
         templateParams
       );
 
       // Send auto-reply email to the customer
-      await (window as any).emailjs.send(
+      await emailjs.send(
         'service_ics6mwd',
         'template_vuiys3f',
         templateParams
@@ -79,10 +92,14 @@ function ContactForm() {
     } catch (error) {
       console.error("Contact form submission error:", error);
       
-      // Show error to the user
+      // Show error to the user with more details
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : "Please try again or contact us directly via email.";
+      
       toast({
         title: "Something went wrong",
-        description: "Please try again or contact us directly via email.",
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {

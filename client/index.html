@@ -31,9 +31,26 @@
     <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
+      // Wait for EmailJS to load, then initialize
       (function() {
-        // Initialize EmailJS with your public key
-        emailjs.init("9AowZHld3jYv6HZOx");
+        function initEmailJS() {
+          if (typeof emailjs !== 'undefined' && emailjs.init) {
+            try {
+              emailjs.init("9AowZHld3jYv6HZOx");
+              console.log("EmailJS initialized successfully");
+              // Make sure it's available on window object
+              if (window && !window.emailjs) {
+                window.emailjs = emailjs;
+              }
+            } catch (error) {
+              console.error("EmailJS initialization error:", error);
+            }
+          } else {
+            // Retry after a short delay if EmailJS hasn't loaded yet
+            setTimeout(initEmailJS, 100);
+          }
+        }
+        initEmailJS();
       })();
     </script>
 
