@@ -74,8 +74,6 @@ const NovaraPage: FC = () => {
         province="Novara"
         neighborhoods={neighborhoods}
         geoCoordinates={{ latitude: 45.4455, longitude: 8.6190 }}
-        hasOffice={true}
-        officeAddress="Novara, Piemonte, Italy"
         faqs={[
           {
             question: "Quali servizi di sviluppo web offrite a Novara?",
