@@ -112,13 +112,6 @@ const RomaPage: FC = () => {
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
                 Servizi professionali di sviluppo web a Roma e provincia. Sviluppo siti web, applicazioni web, e-commerce con tecnologie moderne come React, Node.js e TypeScript.
               </p>
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
-                {neighborhoods.slice(0, 6).map((neighborhood) => (
-                  <span key={neighborhood} className="px-4 py-2 bg-card rounded-full text-sm">
-                    {neighborhood}
-                  </span>
-                ))}
-              </div>
               <Button asChild size="lg" className="text-lg px-8">
                 <Link href="/contact">
                   Richiedi Preventivo Gratuito

@@ -156,21 +156,6 @@ const LocationsPage: FC = () => {
                       <p className="text-sm text-muted-foreground mb-3">
                         {city.description}
                       </p>
-                      <div className="flex flex-wrap gap-2">
-                        {city.neighborhoods.slice(0, 3).map((neighborhood) => (
-                          <span
-                            key={neighborhood}
-                            className="px-2 py-1 bg-primary/10 text-xs rounded-full"
-                          >
-                            {neighborhood}
-                          </span>
-                        ))}
-                        {city.neighborhoods.length > 3 && (
-                          <span className="px-2 py-1 bg-primary/10 text-xs rounded-full">
-                            +{city.neighborhoods.length - 3} altre
-                          </span>
-                        )}
-                      </div>
                     </CardHeader>
                   </Card>
                 </Link>
