@@ -1,5 +1,6 @@
 import { ServiceCard } from "@/components/service-card";
 import { Code, Layout, Database, Layers, Server } from "lucide-react";
+import { SEO } from "@/components/seo";
 
 const services = [
   {
@@ -30,7 +31,15 @@ const services = [
 
 export default function Services() {
   return (
-    <div className="space-y-8">
+    <>
+      <SEO 
+        title="Web Development Services"
+        description="Comprehensive web development services including Frontend, Backend, Full Stack, Database Design, and API Integration. Expert in React, Node.js, TypeScript, and modern web technologies."
+        keywords={['web development services', 'frontend development', 'backend development', 'full stack development', 'database design', 'API integration', 'React development', 'Node.js development']}
+        location="Novara, Italy"
+        language="en"
+      />
+      <div className="space-y-8">
       <div id="services" className="text-center space-y-4">
         <h1 className="text-4xl font-bold">Our Services</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -53,5 +62,6 @@ export default function Services() {
         </div>
       </div>
     </div>
+    </>
   );
 }

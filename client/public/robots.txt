@@ -21,6 +21,12 @@ Allow: /sq/elbasan$
 Allow: /sq/fier$
 Allow: /sq/korce$
 
+# Italian city pages - explicitly allow crawling with maximum priority for local SEO
+Allow: /it/novara$
+Allow: /it/milano$
+Allow: /it/torino$
+Allow: /it/biella$
+
 # Sitemaps
 Sitemap: https://codewithenea.it/sitemap-index.xml
 Sitemap: https://codewithenea.it/sitemap.xml

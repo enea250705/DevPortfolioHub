@@ -74,6 +74,43 @@ export function Footer() {
               ))}
             </ul>
           </div>
+
+          {/* Location Pages Section - Internal Linking for SEO */}
+          <div className="space-y-4">
+            <h3 className="font-semibold">Serviamo</h3>
+            <div className="grid grid-cols-2 gap-2">
+              <Link href="/it/novara">
+                <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                  Novara
+                </span>
+              </Link>
+              <Link href="/it/milano">
+                <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                  Milano
+                </span>
+              </Link>
+              <Link href="/it/torino">
+                <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                  Torino
+                </span>
+              </Link>
+              <Link href="/it/biella">
+                <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                  Biella
+                </span>
+              </Link>
+              <Link href="/it/roma">
+                <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                  Roma
+                </span>
+              </Link>
+              <Link href="/it/locations">
+                <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer font-semibold">
+                  Tutte le Città →
+                </span>
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Bar */}

@@ -5,6 +5,7 @@ import { BackToTop } from "@/components/back-to-top";
 import { SkillsSection } from "@/components/skills-section";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { SEO } from "@/components/seo";
 
 const quotes = [
   {
@@ -40,7 +41,30 @@ export default function Home() {
   ];
 
   return (
-    <div className="space-y-24">
+    <>
+      <SEO 
+        title="Best Web Development & Programming Services"
+        description="Top-rated web development, programming, and software development services in Novara. Expert in custom web solutions, e-commerce, React.js, Node.js, TypeScript, and full-stack development."
+        keywords={[
+          'web development Novara',
+          'sviluppatore web Novara',
+          'web developer Novara',
+          'sviluppatore siti web Novara',
+          'programmatore Novara',
+          'React developer Novara',
+          'Node.js developer Novara',
+          'full stack developer Novara',
+          'TypeScript developer Novara',
+          'e-commerce developer Novara'
+        ]}
+        location="Novara, Italy"
+        language="en"
+        cityName="Novara"
+        province="Novara"
+        neighborhoods={["Centro Storico", "Sant'Agabio", "San Martino", "Veveri", "Bicocca"]}
+        geoCoordinates={{ latitude: 45.4455, longitude: 8.6190 }}
+      />
+      <div className="space-y-24">
       {/* Hero Section with Parallax */}
       <motion.section
         ref={ref}
@@ -169,5 +193,6 @@ export default function Home() {
 
       <BackToTop />
     </div>
+    </>
   );
 }

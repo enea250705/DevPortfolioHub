@@ -1,4 +1,5 @@
 import { ProjectCard } from "@/components/project-card";
+import { SEO } from "@/components/seo";
 
 const projects = [
   {
@@ -33,7 +34,15 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <div className="space-y-12">
+    <>
+      <SEO 
+        title="Portfolio - Web Development Projects"
+        description="View our portfolio of successful web development projects including CRM systems, e-learning platforms, restaurant management systems, and real estate platforms."
+        keywords={['web development portfolio', 'portfolio projects', 'web developer projects', 'React projects', 'Node.js projects']}
+        location="Novara, Italy"
+        language="en"
+      />
+      <div className="space-y-12">
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold">Portfolio</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -47,5 +56,6 @@ export default function Portfolio() {
         ))}
       </div>
     </div>
+    </>
   );
 }

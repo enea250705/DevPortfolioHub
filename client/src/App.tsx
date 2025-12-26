@@ -15,6 +15,13 @@ import Terms from "./pages/terms";
 import Pricing from "./pages/pricing";
 import Navbar from "./components/navbar";
 import { Footer } from "./components/footer";
+// Italian city pages
+import NovaraPage from "./pages/it/novara";
+import MilanoPage from "./pages/it/milano";
+import TorinoPage from "./pages/it/torino";
+import BiellaPage from "./pages/it/biella";
+import LocationsPage from "./pages/it/locations";
+import RomaPage from "./pages/it/roma";
 
 // Component to handle scrolling to top on route change
 function ScrollToTop() {
@@ -47,6 +54,13 @@ export default function App() {
             <Route path="/privacy" component={Privacy} />
             <Route path="/terms" component={Terms} />
             <Route path="/pricing" component={Pricing} />
+            {/* Italian city pages */}
+            <Route path="/it/novara" component={NovaraPage} />
+            <Route path="/it/milano" component={MilanoPage} />
+            <Route path="/it/torino" component={TorinoPage} />
+            <Route path="/it/biella" component={BiellaPage} />
+            <Route path="/it/roma" component={RomaPage} />
+            <Route path="/it/locations" component={LocationsPage} />
             <Route component={NotFound} />
           </Switch>
         </main>

@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Instagram, Linkedin, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
+import { SEO } from "@/components/seo";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -312,5 +313,16 @@ export default function Contact() {
     );
   }
   
-  return <ContactForm />;
+  return (
+    <>
+      <SEO 
+        title="Contact - Get in Touch"
+        description="Contact CodeWithEnea for professional web development services. Get a free quote for your project. Available in Novara, Milan, Torino, and throughout Italy."
+        keywords={['contact web developer', 'web developer contact', 'get quote', 'web development consultation']}
+        location="Novara, Italy"
+        language="en"
+      />
+      <ContactForm />
+    </>
+  );
 }
