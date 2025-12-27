@@ -55,26 +55,36 @@ function ContactForm() {
         throw new Error("EmailJS is not loaded. Please refresh the page and try again.");
       }
 
-      // Use EmailJS to send the email directly from the client
-      const templateParams = {
+      // Prepare template parameters for admin notification
+      const adminTemplateParams = {
         name: data.name,
         email: data.email,
         message: data.message + (selectedPlan ? `\n\nSelected Plan: ${selectedPlan}` : ''),
-        to_email: "info@codewithenea.it"
+        to_email: "info@codewithenea.it",
+        from_name: data.name,
+        from_email: data.email
       };
 
-      // Send notification email to admin using the admin template
+      // Prepare template parameters for customer auto-reply
+      const customerTemplateParams = {
+        to_name: data.name,
+        to_email: data.email,
+        reply_time: "24-48 hours",
+        company_name: "CodeWithEnea"
+      };
+
+      // Send notification email to admin (info@codewithenea.it)
       await emailjs.send(
         'service_ics6mwd',
         'template_558hej9',
-        templateParams
+        adminTemplateParams
       );
 
-      // Send auto-reply email to the customer
+      // Send auto-reply email to customer
       await emailjs.send(
         'service_ics6mwd',
         'template_vuiys3f',
-        templateParams
+        customerTemplateParams
       );
 
       // Show success message
